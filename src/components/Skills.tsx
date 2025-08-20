@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer, StaggerItem } from './AnimatedSection';
 
 // Professional skill levels based on industry standards
+// Clean build - no unused variables
 const skillLevels = {
   expert: { label: 'Expert', color: 'text-emerald-400', bgColor: 'bg-emerald-500/20 border-emerald-500/30', description: '3+ years production experience' },
   advanced: { label: 'Advanced', color: 'text-blue-400', bgColor: 'bg-blue-500/20 border-blue-500/30', description: '2+ years experience' },
