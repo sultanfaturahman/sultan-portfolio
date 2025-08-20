@@ -2,6 +2,7 @@ import React from 'react';
 import { Code, Database, Globe, Server, Smartphone, Palette, Star, Award } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer, StaggerItem } from './AnimatedSection';
+import { usePerformance } from '../hooks/usePerformance';
 
 // Professional skill levels based on industry standards
 const skillLevels = {
@@ -12,6 +13,7 @@ const skillLevels = {
 };
 
 const Skills: React.FC = () => {
+  const { shouldReduceAnimations } = usePerformance();
   const skillCategories = [
     {
       title: 'Frontend Development',

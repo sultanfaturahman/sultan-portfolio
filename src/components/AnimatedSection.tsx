@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { usePerformance } from '../hooks/usePerformance';
 
 interface AnimatedSectionProps {
   children: React.ReactNode;
@@ -30,9 +31,11 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   stagger = 0
 }) => {
   const isTouchDevice = useIsTouchDevice();
+  const { shouldReduceAnimations } = usePerformance();
+
   const getInitialState = () => {
-    // Reduce motion intensity on touch devices for better performance
-    const intensity = isTouchDevice ? 0.5 : 1;
+    // Reduce motion intensity on touch devices and low-end devices for better performance
+    const intensity = (isTouchDevice || shouldReduceAnimations) ? 0.3 : 1;
     
     switch (direction) {
       case 'up':
@@ -76,10 +79,10 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       whileInView={getAnimateState()}
       viewport={{ once: true, margin: "-100px" }}
       transition={{
-        duration: isTouchDevice ? duration * 0.8 : duration, // Faster on touch devices
-        delay,
-        ease: isTouchDevice ? "easeOut" : [0.25, 0.46, 0.45, 0.94], // Simpler easing on touch
-        staggerChildren: stagger
+        duration: shouldReduceAnimations ? duration * 0.5 : (isTouchDevice ? duration * 0.7 : duration),
+        delay: shouldReduceAnimations ? delay * 0.5 : delay,
+        ease: shouldReduceAnimations ? "easeOut" : (isTouchDevice ? "easeOut" : [0.25, 0.46, 0.45, 0.94]),
+        staggerChildren: shouldReduceAnimations ? stagger * 0.5 : stagger
       }}
     >
       {children}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Github, Globe, Code } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AnimatedSection, { StaggerContainer, StaggerItem } from './AnimatedSection';
+import { usePerformance } from '../hooks/usePerformance';
 
 // Component untuk handling image loading dengan fallback
 const ProjectImage: React.FC<{
@@ -53,6 +54,7 @@ const ProjectImage: React.FC<{
 };
 
 const Projects: React.FC = () => {
+  const { shouldReduceAnimations, isMobile } = usePerformance();
   const projects = [
     {
       title: 'The Blue Economist',
@@ -180,18 +182,30 @@ const Projects: React.FC = () => {
             <StaggerItem key={index} direction="up">
               <ProjectWrapper
                 {...wrapperProps}
-                whileHover={{
+                whileHover={shouldReduceAnimations ? {
+                  y: -4,
+                  scale: 1.01
+                } : {
                   y: -8,
                   boxShadow: "0 25px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(14, 165, 233, 0.2)",
                   scale: 1.02
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                transition={{
+                  type: shouldReduceAnimations ? "tween" : "spring",
+                  duration: shouldReduceAnimations ? 0.2 : undefined,
+                  stiffness: shouldReduceAnimations ? undefined : 300,
+                  damping: shouldReduceAnimations ? undefined : 20
+                }}
               >
                 {/* Project Image */}
-                <motion.div 
+                <motion.div
                   className="relative h-40 sm:h-48 bg-gradient-to-br from-blue-100 to-indigo-100 overflow-hidden"
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  whileHover={shouldReduceAnimations ? {} : { scale: 1.03 }}
+                  transition={{
+                    type: shouldReduceAnimations ? "tween" : "spring",
+                    duration: shouldReduceAnimations ? 0.2 : undefined,
+                    stiffness: shouldReduceAnimations ? undefined : 300
+                  }}
                 >
                   <ProjectImage 
                     src={project.image}
