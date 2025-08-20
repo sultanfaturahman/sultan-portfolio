@@ -125,7 +125,7 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="section-padding bg-dark-900 relative overflow-hidden section-lazy">
+    <section id="projects" className="section-padding section-consistent section-lazy">
       {/* Heavy background → desktop non-low-end only */}
       {!shouldReduceAnimations && !isMobileDevice && (
         <>

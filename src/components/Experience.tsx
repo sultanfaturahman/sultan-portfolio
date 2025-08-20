@@ -37,7 +37,7 @@ const Experience: React.FC = () => {
       ]
     },
     {
-      company: 'Teelite Club',
+      company: 'Teelite Club Studio',
       position: 'Full-Stack Developer',
       period: 'Freelance Project',
       duration: '2025',

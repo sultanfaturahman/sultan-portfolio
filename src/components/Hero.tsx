@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Mail, FileText, Download } from 'lucide-react';
+import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
 import { usePerformance } from '../hooks/usePerformance';
@@ -8,19 +8,17 @@ const Hero: React.FC = () => {
   const { shouldReduceAnimations, isTouch, isMobileDevice } = usePerformance();
 
   // CV URL - Ganti dengan link Google Drive atau hosting CV Anda
-  const cvUrl = "https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing";
-  const cvDownloadUrl = "https://drive.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID";
+  const cvUrl = "https://drive.google.com/file/d/1IFCbJOiFbQDxaGe-FV4Hq4BmEsRCJNG-/view?usp=sharing";
+
 
   const handleViewCV = () => {
     window.open(cvUrl, '_blank');
   };
 
-  const handleDownloadCV = () => {
-    window.open(cvDownloadUrl, '_blank');
-  };
+
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center section-consistent pt-16">
+    <section id="home" className="min-h-screen flex items-center justify-center section-consistent pt-20">
       {/* Heavy background → desktop non-low-end only */}
       {!shouldReduceAnimations && !isMobileDevice && (
         <>
@@ -111,7 +109,7 @@ const Hero: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.8 }}
               >
-                Frontend Dev
+                Frontend Developer
               </motion.span>
             </motion.h2>
           </AnimatedSection>
@@ -189,65 +187,47 @@ const Hero: React.FC = () => {
               </motion.a>
             </motion.div>
 
-            {/* CV Download Option */}
-            <motion.div 
-              className="flex justify-center mb-12 sm:mb-16"
+            {/* Social Icons */}
+            <motion.div
+              className="flex justify-center space-x-6 mb-12 sm:mb-16"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.8, duration: 0.6 }}
             >
-              <motion.button
-                onClick={handleDownloadCV}
-                className="text-gray-400 hover:text-primary-400 flex items-center space-x-2 text-sm transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
+              <motion.a
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 hover:border-slate-600/50 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300"
+                whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Download size={16} />
-                <span>Download CV</span>
-              </motion.button>
+                <Github size={20} />
+              </motion.a>
+
+              <motion.a
+                href="https://linkedin.com/in/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 hover:border-slate-600/50 rounded-xl flex items-center justify-center text-gray-400 hover:text-blue-400 transition-all duration-300"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Linkedin size={20} />
+              </motion.a>
+
+              <motion.a
+                href="mailto:your.email@example.com"
+                className="w-12 h-12 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 hover:border-slate-600/50 rounded-xl flex items-center justify-center text-gray-400 hover:text-cyan-400 transition-all duration-300"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Mail size={20} />
+              </motion.a>
             </motion.div>
           </AnimatedSection>
 
-          {/* Social Links */}
-          <AnimatedSection direction="up" delay={1.2}>
-            <motion.div 
-              className="flex justify-center space-x-4 sm:space-x-6 mb-8 sm:mb-12"
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.1,
-                    delayChildren: 1.6
-                  }
-                }
-              }}
-            >
-              {[
-                { href: "https://github.com/sultanfaturahman", icon: Github, color: "text-gray-700" },
-                { href: "https://www.linkedin.com/in/sultan-faturahman/", icon: Linkedin, color: "text-blue-600" },
-                { href: "mailto:sultannfaturahman@gmail.com", icon: Mail, color: "text-gray-700" }
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  target={social.href.startsWith('mailto') ? undefined : "_blank"}
-                  rel={social.href.startsWith('mailto') ? undefined : "noopener noreferrer"}
-                  className="w-12 h-12 sm:w-14 sm:h-14 glass rounded-full flex items-center justify-center shadow-dark-lg border border-dark-700/50 group hover:border-primary-500/50"
-                  variants={{
-                    hidden: { opacity: 0, scale: 0 },
-                    visible: { opacity: 1, scale: 1 }
-                  }}
-                  whileHover={isTouch ? undefined : { scale: 1.1, rotate: 3 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
-                >
-                  <social.icon size={20} className={`sm:w-6 sm:h-6 text-gray-300 group-hover:text-primary-400 group-hover:scale-110 transition-all duration-300`} />
-                </motion.a>
-              ))}
-            </motion.div>
-          </AnimatedSection>
+
 
           {/* Scroll Indicator */}
           <AnimatedSection direction="fade" delay={1.8}>

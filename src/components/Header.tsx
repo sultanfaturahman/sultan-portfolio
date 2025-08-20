@@ -47,7 +47,7 @@ const Header: React.FC = () => {
     const targetElement = document.getElementById(targetId);
     
     if (targetElement) {
-      const headerHeight = 80; // Height of fixed header
+      const headerHeight = 100; // Height of fixed header
       const targetPosition = targetElement.offsetTop - headerHeight;
       
       window.scrollTo({
@@ -71,25 +71,44 @@ const Header: React.FC = () => {
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <motion.div 
             className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400 }}
           >
-            <motion.div 
-              className="w-8 h-8 bg-primary-gradient rounded-lg flex items-center justify-center shadow-glow"
-              whileHover={{ 
+            <motion.div
+              className="w-12 h-12 flex items-center justify-center logo-image"
+              whileHover={{
                 rotate: 5,
                 scale: 1.05,
-                boxShadow: "0 8px 25px rgba(14, 165, 233, 0.6)" 
+                filter: "drop-shadow(0 8px 25px rgba(14, 165, 233, 0.6))"
               }}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              <span className="text-white font-bold text-lg">P</span>
+              <img
+                src="/images/logo.png"
+                alt="Sultan Faturahman"
+                className="w-12 h-12 object-contain logo-image"
+                style={{
+                  filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3))',
+                  background: 'transparent'
+                }}
+                onError={(e) => {
+                  // Fallback ke placeholder SVG
+                  const target = e.target as HTMLImageElement;
+                  target.src = '/images/profile-placeholder.svg';
+                  target.className = 'w-10 h-10 object-contain';
+                  target.onerror = () => {
+                    // Final fallback ke huruf P
+                    target.style.display = 'none';
+                    target.parentElement!.innerHTML = '<span class="text-white font-bold text-xl flex items-center justify-center w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl">P</span>';
+                  };
+                }}
+              />
             </motion.div>
-            <motion.span 
+            <motion.span
               className={`text-xl font-display font-bold transition-colors duration-300 ${
                 scrolled ? 'text-white' : 'text-white'
               }`}

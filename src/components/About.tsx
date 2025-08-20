@@ -60,7 +60,7 @@ const About: React.FC = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left Column - Image and Info */}
           <motion.div 
             className="space-y-8"
@@ -69,36 +69,43 @@ const About: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Profile Image Placeholder */}
-            <motion.div 
+            {/* Profile Image */}
+            <motion.div
               className="relative"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <motion.div 
-                className="w-80 h-80 bg-primary-gradient rounded-2xl mx-auto relative overflow-hidden shadow-glow-lg"
-                whileHover={{ 
-                  boxShadow: "0 0 50px rgba(14, 165, 233, 0.6), 0 25px 50px rgba(0, 0, 0, 0.3)" 
-                }}
-                transition={{ duration: 0.3 }}
+              <motion.div
+                className="w-96 h-[30rem] sm:w-[26rem] sm:h-[32rem] mx-auto relative profile-container"
               >
-                <div className="absolute inset-0 bg-white/10 backdrop-blur-sm flex items-center justify-center overflow-hidden">
-                  <motion.div
-                    className="hover-lift w-full h-full flex items-center justify-center"
-                  >
-                    <img
-                      src="/images/profile/sultan-profile.jpg"
-                      alt="Sultan Naufal Faturahman"
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </motion.div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <img
+                  src="/images/profile/profile.png"
+                  alt="Sultan Faturahman"
+                  className="w-full h-full object-contain profile-image"
+                  style={{
+                    filter: 'drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3))',
+                    background: 'transparent'
+                  }}
+                  onError={(e) => {
+                    // Fallback ke placeholder SVG
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/images/profile-placeholder.svg";
+                    target.className = "w-full h-full object-contain";
+                    target.onerror = () => {
+                      // Final fallback ke foto asli
+                      target.src = "/images/profile/sultan-profile.jpg";
+                      target.className = "w-full h-full object-contain";
+                    };
+                  }}
+                />
               </motion.div>
               <motion.div
-                className="absolute -bottom-4 -right-4 w-24 h-24 bg-accent-gradient rounded-full flex items-center justify-center shadow-glow-accent animate-pulse-glow hover-lift"
+                className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-24 h-24 sm:w-28 sm:h-28 bg-accent-gradient rounded-full flex items-center justify-center hover-lift"
+                style={{ boxShadow: 'none' }}
               >
-                <span className="text-white font-bold text-2xl">5+</span>
+                <span className="text-white font-bold text-2xl sm:text-3xl">5+</span>
               </motion.div>
             </motion.div>
 

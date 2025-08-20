@@ -84,13 +84,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* Account for fixed header */
+    scroll-padding-top: 100px; /* Account for fixed header */
   }
 
   body {
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
-    @apply bg-dark-950 text-gray-100;
+    @apply bg-slate-900 text-gray-100;
   }
 
   /* Smooth transitions for all interactive elements */
@@ -259,7 +259,7 @@
 
   /* Consistent Section Styling */
   .section-consistent {
-    @apply bg-dark-gradient relative overflow-hidden;
+    @apply bg-slate-900 relative overflow-hidden;
   }
 
   /* Subtle Hover Effects - No Bouncing */
@@ -356,5 +356,33 @@
     body {
       overflow-x: hidden;
     }
+  }
+
+  /* Profile image styles - no background, transparent */
+  .profile-image {
+    background: transparent !important;
+    mix-blend-mode: normal;
+  }
+
+  .profile-image img {
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Logo styles - no background, transparent */
+  .logo-image {
+    background: transparent !important;
+    mix-blend-mode: normal;
+  }
+
+  .logo-image img {
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Remove any background from profile containers */
+  .profile-container {
+    background: transparent !important;
+    backdrop-filter: none !important;
   }
 }
