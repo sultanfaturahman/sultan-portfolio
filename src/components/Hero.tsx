@@ -72,53 +72,47 @@ const Hero: React.FC = () => {
       <div className="container-custom text-center relative z-10">
         <div className="max-w-4xl mx-auto">
           {/* Greeting */}
-          <AnimatedSection direction="fade" delay={0.2}>
-            <div className="mb-6">
-              <motion.span 
-                className="text-primary-400 font-medium text-lg glow"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                Hello, I'm
-              </motion.span>
-            </div>
-          </AnimatedSection>
-
-          {/* Name */}
-          <AnimatedSection direction="up" delay={0.4}>
+          {/* Main Heading - Modern Style like the image */}
+          <AnimatedSection direction="up" delay={0.2}>
             <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-white mb-4 sm:mb-6 leading-tight"
-              whileHover={{ scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 200 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-4 sm:mb-6 leading-tight"
+              whileHover={isTouch ? undefined : { scale: 1.01 }}
+              transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
             >
               <motion.span
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-                className="block sm:inline"
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="block"
               >
-                Muhamad Sultan
-              </motion.span>
-              <motion.span 
-                className="block gradient-text"
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.8, duration: 0.8 }}
-              >
-                Faturahman
+                Hi, I'm{" "}
+                <motion.span
+                  className="text-primary-400"
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                >
+                  Sultan.
+                </motion.span>
               </motion.span>
             </motion.h1>
           </AnimatedSection>
 
-          {/* Title */}
+          {/* Subtitle - Modern Style like the image */}
           <AnimatedSection direction="up" delay={0.6}>
-            <motion.h2 
-              className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 sm:mb-8 font-medium px-4 sm:px-0"
+            <motion.h2
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-400 mb-6 sm:mb-8 font-medium px-4 sm:px-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 1 }}
+              transition={{ delay: 0.8, duration: 1 }}
             >
-              Website Developer & Full-Stack Engineer
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 0.8 }}
+              >
+                Frontend Dev
+              </motion.span>
             </motion.h2>
           </AnimatedSection>
 
