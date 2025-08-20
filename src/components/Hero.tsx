@@ -141,21 +141,21 @@ const Hero: React.FC = () => {
                 }
               }}
             >
-              <motion.a 
-                href="#projects" 
+              <motion.a
+                href="#contact"
                 className="btn-primary group w-full sm:w-auto text-center flex items-center justify-center space-x-2"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 }
                 }}
-                whileHover={{ 
+                whileHover={{
                   scale: 1.02,
                   boxShadow: "0 15px 35px rgba(14, 165, 233, 0.4)"
                 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="relative z-10">View My Work</span>
+                <span className="relative z-10">Hire Me</span>
               </motion.a>
               
               <motion.button
@@ -176,8 +176,8 @@ const Hero: React.FC = () => {
                 <span className="relative z-10">View CV</span>
               </motion.button>
 
-              <motion.a 
-                href="#contact" 
+              <motion.a
+                href="#projects"
                 className="btn-secondary group w-full sm:w-auto text-center flex items-center justify-center space-x-2"
                 variants={{
                   hidden: { opacity: 0, y: 20 },
@@ -190,7 +190,7 @@ const Hero: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="relative z-10">Get In Touch</span>
+                <span className="relative z-10">View Case Studies</span>
               </motion.a>
             </motion.div>
 

@@ -63,10 +63,19 @@ const Projects: React.FC = () => {
       technologies: ['React', 'Tailwind CSS', 'Midtrans', 'JavaScript'],
       category: 'Web Application',
       website: 'https://theblueeconomist.org',
-      github: 'https://github.com/maritimmuda-id', // Bisa diisi dengan link GitHub organisasi jika ada
-      isOrganization: true, // Menandai sebagai project organisasi
+      github: 'https://github.com/maritimmuda-id',
+      isOrganization: true,
       organizationName: 'Maritim Muda Nusantara',
-      role: 'Lead Developer', // Role Anda di project ini
+      role: 'Lead Developer',
+      // Case Study Format
+      context: 'Membership organization needed digital transformation',
+      problem: 'Manual registration process caused high drop-off rates and payment errors',
+      approach: 'Built React-based platform with Midtrans integration and optimized UX',
+      impact: {
+        completion: '+38% completion rate',
+        performance: 'LCP <1.2s',
+        errors: '0 payment errors'
+      },
       features: [
         'Membership registration system',
         'Payment gateway integration',

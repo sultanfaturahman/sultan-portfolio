@@ -14,14 +14,15 @@
     <meta property="og:title" content="Muhamad Sultan Faturahman - Website Developer" />
     <meta property="og:description" content="Professional Website Developer & Full-Stack Engineer. Creating beautiful, functional web experiences with modern technologies." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://your-domain.com" />
-    <meta property="og:image" content="https://your-domain.com/images/og-image.jpg" />
+    <meta property="og:url" content="https://sultan-portfolio.netlify.app/" />
+    <meta property="og:image" content="https://sultan-portfolio.netlify.app/images/og-cover.jpg" />
+    <link rel="canonical" href="https://sultan-portfolio.netlify.app/" />
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Muhamad Sultan Faturahman - Website Developer" />
     <meta name="twitter:description" content="Professional Website Developer & Full-Stack Engineer. Creating beautiful, functional web experiences." />
-    <meta name="twitter:image" content="https://your-domain.com/images/og-image.jpg" />
+    <meta name="twitter:image" content="https://sultan-portfolio.netlify.app/images/og-cover.jpg" />
     
     <!-- Additional SEO Meta Tags -->
     <meta name="keywords" content="website developer, full-stack developer, react developer, web development, indonesia developer, sultan faturahman" />
@@ -34,10 +35,31 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     
-    <!-- Google Fonts -->
+    <!-- Optimized Google Fonts with font-display: swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Muhamad Sultan Faturahman",
+      "jobTitle": "Web Developer",
+      "url": "https://sultan-portfolio.netlify.app/",
+      "sameAs": [
+        "https://github.com/sultanfaturahman",
+        "https://www.linkedin.com/in/sultanfaturahman/"
+      ],
+      "knowsAbout": ["Laravel", "React", "TailwindCSS", "Midtrans", "UI/UX", "JavaScript", "TypeScript"],
+      "description": "Experienced web developer specializing in modern web technologies including Laravel, React, and Tailwind CSS with expertise in payment integration and UI/UX design.",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelance Web Developer"
+      }
+    }
+    </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
