@@ -125,7 +125,7 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="section-padding bg-dark-900 relative overflow-hidden">
+    <section id="projects" className="section-padding bg-dark-900 relative overflow-hidden section-lazy">
       {/* Enhanced Background Elements for Dark Theme */}
       <motion.div
         className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl glow"
@@ -192,18 +192,16 @@ const Projects: React.FC = () => {
               <ProjectWrapper
                 {...wrapperProps}
                 whileHover={shouldReduceAnimations ? {
-                  y: -4,
-                  scale: 1.01
+                  y: -2,
+                  scale: 1.005
                 } : {
-                  y: -8,
-                  boxShadow: "0 25px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(14, 165, 233, 0.2)",
-                  scale: 1.02
+                  y: -6,
+                  scale: 1.015
                 }}
                 transition={{
-                  type: shouldReduceAnimations ? "tween" : "spring",
-                  duration: shouldReduceAnimations ? 0.2 : undefined,
-                  stiffness: shouldReduceAnimations ? undefined : 300,
-                  damping: shouldReduceAnimations ? undefined : 20
+                  type: "tween",
+                  duration: 0.2,
+                  ease: "easeOut"
                 }}
               >
                 {/* Project Image */}

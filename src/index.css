@@ -3,6 +3,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance Optimizations - Reduce Motion & Low-End Device Support */
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reduce heavy effects on small screens (mobile) */
+@media (max-width: 640px) {
+  .fx-heavy {
+    animation: none !important;
+    transition-duration: 120ms !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Simplify shadows on mobile */
+  .shadow-glow,
+  .shadow-glow-accent {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+/* Low-end device optimizations */
+.low-end * {
+  animation-duration: 120ms !important;
+  transition-duration: 120ms !important;
+}
+
+.low-end .fx-heavy {
+  animation: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* GPU-friendly animations - use transform and opacity only */
+.gpu-optimized {
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Force GPU layer */
+}
+
+/* Content visibility for performance */
+.section-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

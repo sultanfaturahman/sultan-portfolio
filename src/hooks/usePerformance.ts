@@ -17,19 +17,27 @@ export const usePerformance = () => {
       setPrefersReducedMotion(mediaQuery.matches);
     };
 
-    // Check for low-end device (basic heuristic)
+    // Enhanced low-end device detection
     const checkLowEndDevice = () => {
       const connection = (navigator as any).connection;
       const isSlowConnection = connection && (
-        connection.effectiveType === 'slow-2g' || 
+        connection.effectiveType === 'slow-2g' ||
         connection.effectiveType === '2g' ||
         connection.effectiveType === '3g'
       );
-      
-      const isLowMemory = (navigator as any).deviceMemory && (navigator as any).deviceMemory < 4;
+
+      const isLowMemory = (navigator as any).deviceMemory && (navigator as any).deviceMemory <= 2;
       const isLowCores = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
-      
-      setIsLowEndDevice(isSlowConnection || isLowMemory || isLowCores || false);
+      const isTouchDevice = 'ontouchstart' in window;
+      const isOldDevice = /Android [1-6]|iPhone OS [1-9]/.test(navigator.userAgent);
+
+      const isLowEnd = isSlowConnection || isLowMemory || isLowCores || (isTouchDevice && isOldDevice);
+      setIsLowEndDevice(isLowEnd);
+
+      // Apply low-end class to document
+      if (isLowEnd) {
+        document.documentElement.classList.add('low-end');
+      }
     };
 
     checkMobile();

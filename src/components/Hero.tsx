@@ -18,9 +18,9 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center section-consistent pt-16">
-      {/* Enhanced Floating Background Elements */}
+      {/* Optimized Background Elements - Heavy effects marked for mobile optimization */}
       <motion.div
-        className="absolute top-20 left-10 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl glow"
+        className="absolute top-20 left-10 w-96 h-96 bg-primary-500/20 rounded-full fx-heavy blur-3xl glow hidden sm:block"
         animate={{
           y: [0, -30, 0],
           x: [0, 20, 0],
@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/20 rounded-full blur-3xl glow-accent"
+        className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/20 rounded-full fx-heavy blur-3xl glow-accent hidden sm:block"
         animate={{
           y: [0, -25, 0],
           x: [0, -15, 0],
@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
         }}
       />
       <motion.div
-        className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"
+        className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full fx-heavy blur-3xl hidden sm:block"
         animate={{
           rotate: [0, 360],
           scale: [1, 1.3, 1],
@@ -58,6 +58,9 @@ const Hero: React.FC = () => {
           ease: "linear"
         }}
       />
+
+      {/* Mobile-friendly background - simple gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 sm:hidden" />
 
       <div className="container-custom text-center relative z-10">
         <div className="max-w-4xl mx-auto">

@@ -61,9 +61,9 @@ const Header: React.FC = () => {
 
   return (
     <motion.header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled 
-          ? 'bg-dark-900/95 backdrop-blur-xl border-b border-dark-700/50 shadow-dark-2xl' 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-dark-900/95 sm:backdrop-blur-xl border-b border-dark-700/50 shadow-md sm:shadow-dark-2xl'
           : 'bg-transparent border-b border-transparent'
       }`}
       initial={{ y: -100 }}
@@ -175,7 +175,7 @@ const Header: React.FC = () => {
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div 
-              className="md:hidden border-t border-dark-700/50 bg-dark-900/95 backdrop-blur-xl"
+              className="md:hidden border-t border-dark-700/50 bg-dark-900/95 sm:backdrop-blur-xl"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
