@@ -54,7 +54,7 @@ const ProjectImage: React.FC<{
 };
 
 const Projects: React.FC = () => {
-  const { shouldReduceAnimations, isMobile } = usePerformance();
+  const { shouldReduceAnimations } = usePerformance();
   const projects = [
     {
       title: 'The Blue Economist',
