@@ -77,12 +77,19 @@ export const usePerformance = () => {
   const shouldReduceAnimations = prefersReduced || isLowEndDevice;
   const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
 
+  // Enhanced mobile detection for better performance decisions
+  const isMobileDevice = typeof window !== 'undefined' && (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+    window.innerWidth <= 768
+  );
+
   return {
     isMobile,
     prefersReducedMotion,
     isLowEndDevice,
     shouldReduceAnimations,
     isTouch,
-    prefersReduced
+    prefersReduced,
+    isMobileDevice
   };
 };

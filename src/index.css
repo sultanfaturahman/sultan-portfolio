@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Font loading handled in HTML with preload for better FCP */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,12 +45,20 @@
   transform: none !important;
 }
 
-/* Kill heavy effects on mobile */
-@media (max-width: 768px) {
+/* Kill heavy effects on mobile and tablets */
+@media (max-width: 1024px) {
   .fx-heavy {
     filter: none !important;
     backdrop-filter: none !important;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Disable expensive animations on mobile */
+  * {
+    animation-duration: 0.2s !important;
+    transition-duration: 0.2s !important;
   }
 }
 
@@ -64,6 +72,11 @@
 .section-lazy {
   content-visibility: auto;
   contain-intrinsic-size: 800px;
+}
+
+/* Reduce paint complexity */
+.paint-optimized {
+  contain: layout style paint;
 }
 
 @layer base {

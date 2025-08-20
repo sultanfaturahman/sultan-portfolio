@@ -54,7 +54,7 @@ const ProjectImage: React.FC<{
 };
 
 const Projects: React.FC = () => {
-  const { shouldReduceAnimations, isTouch } = usePerformance();
+  const { shouldReduceAnimations, isTouch, isMobileDevice } = usePerformance();
   const projects = [
     {
       title: 'The Blue Economist',
@@ -127,10 +127,10 @@ const Projects: React.FC = () => {
   return (
     <section id="projects" className="section-padding bg-dark-900 relative overflow-hidden section-lazy">
       {/* Heavy background → desktop non-low-end only */}
-      {!shouldReduceAnimations && (
+      {!shouldReduceAnimations && !isMobileDevice && (
         <>
           <motion.div
-            className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl fx-heavy hidden sm:block"
+            className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl fx-heavy hidden lg:block"
             animate={{
               scale: [1, 1.2, 1],
               x: [0, 30, 0],
@@ -143,7 +143,7 @@ const Projects: React.FC = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-1/4 left-0 w-80 h-80 bg-accent-500/15 rounded-full blur-3xl fx-heavy hidden sm:block"
+            className="absolute bottom-1/4 left-0 w-80 h-80 bg-accent-500/15 rounded-full blur-3xl fx-heavy hidden lg:block"
             animate={{
               scale: [1, 1.3, 1],
               x: [0, -20, 0],

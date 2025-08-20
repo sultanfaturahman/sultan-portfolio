@@ -5,7 +5,7 @@ import AnimatedSection from './AnimatedSection';
 import { usePerformance } from '../hooks/usePerformance';
 
 const Hero: React.FC = () => {
-  const { shouldReduceAnimations, isTouch } = usePerformance();
+  const { shouldReduceAnimations, isTouch, isMobileDevice } = usePerformance();
 
   // CV URL - Ganti dengan link Google Drive atau hosting CV Anda
   const cvUrl = "https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing";
@@ -22,10 +22,10 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center section-consistent pt-16">
       {/* Heavy background → desktop non-low-end only */}
-      {!shouldReduceAnimations && (
+      {!shouldReduceAnimations && !isMobileDevice && (
         <>
           <motion.div
-            className="absolute top-20 left-10 w-96 h-96 bg-primary-500/20 rounded-full fx-heavy blur-3xl hidden sm:block"
+            className="absolute top-20 left-10 w-96 h-96 bg-primary-500/20 rounded-full fx-heavy blur-3xl hidden lg:block"
             animate={{
               y: [0, -30, 0],
               x: [0, 20, 0],
@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/20 rounded-full fx-heavy blur-3xl hidden sm:block"
+            className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/20 rounded-full fx-heavy blur-3xl hidden lg:block"
             animate={{
               y: [0, -25, 0],
               x: [0, -15, 0],
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
             }}
           />
           <motion.div
-            className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full fx-heavy blur-3xl hidden sm:block"
+            className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full fx-heavy blur-3xl hidden lg:block"
             animate={{
               rotate: [0, 360],
               scale: [1, 1.3, 1],
@@ -66,8 +66,8 @@ const Hero: React.FC = () => {
         </>
       )}
 
-      {/* Mobile gradient fallback */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 sm:hidden" />
+      {/* Mobile-optimized static gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/3 to-accent-500/3 lg:hidden" />
 
       <div className="container-custom text-center relative z-10">
         <div className="max-w-4xl mx-auto">
