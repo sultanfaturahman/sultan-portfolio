@@ -31,7 +31,7 @@
   }
 }
 
-/* Low-end device optimizations */
+/* Low-end device optimizations - Kill heavy effects */
 .low-end * {
   animation-duration: 120ms !important;
   transition-duration: 120ms !important;
@@ -43,6 +43,15 @@
   backdrop-filter: none !important;
   box-shadow: none !important;
   transform: none !important;
+}
+
+/* Kill heavy effects on mobile */
+@media (max-width: 768px) {
+  .fx-heavy {
+    filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
 }
 
 /* GPU-friendly animations - use transform and opacity only */

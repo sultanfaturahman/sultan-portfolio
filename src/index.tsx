@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Auto-detect low-end device and apply class
+const dm = (navigator as any).deviceMemory ?? 4;
+if (dm <= 2) {
+  document.documentElement.classList.add('low-end');
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

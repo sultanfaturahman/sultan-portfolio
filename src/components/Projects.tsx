@@ -54,7 +54,7 @@ const ProjectImage: React.FC<{
 };
 
 const Projects: React.FC = () => {
-  const { shouldReduceAnimations } = usePerformance();
+  const { shouldReduceAnimations, isTouch } = usePerformance();
   const projects = [
     {
       title: 'The Blue Economist',
@@ -126,34 +126,38 @@ const Projects: React.FC = () => {
 
   return (
     <section id="projects" className="section-padding bg-dark-900 relative overflow-hidden section-lazy">
-      {/* Enhanced Background Elements for Dark Theme */}
-      <motion.div
-        className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl glow"
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 30, 0],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 left-0 w-80 h-80 bg-accent-500/15 rounded-full blur-3xl glow-accent"
-        animate={{
-          scale: [1, 1.3, 1],
-          x: [0, -20, 0],
-          y: [0, 20, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2
-        }}
-      />
+      {/* Heavy background → desktop non-low-end only */}
+      {!shouldReduceAnimations && (
+        <>
+          <motion.div
+            className="absolute top-1/4 right-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl fx-heavy hidden sm:block"
+            animate={{
+              scale: [1, 1.2, 1],
+              x: [0, 30, 0],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 left-0 w-80 h-80 bg-accent-500/15 rounded-full blur-3xl fx-heavy hidden sm:block"
+            animate={{
+              scale: [1, 1.3, 1],
+              x: [0, -20, 0],
+              y: [0, 20, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+        </>
+      )}
 
       <div className="container-custom relative z-10">
         <AnimatedSection direction="up" className="text-center mb-16">
@@ -191,16 +195,16 @@ const Projects: React.FC = () => {
             <StaggerItem key={index} direction="up">
               <ProjectWrapper
                 {...wrapperProps}
-                whileHover={shouldReduceAnimations ? {
+                whileHover={shouldReduceAnimations || isTouch ? {
                   y: -2,
-                  scale: 1.005
+                  scale: 1.003
                 } : {
                   y: -6,
                   scale: 1.015
                 }}
                 transition={{
                   type: "tween",
-                  duration: 0.2,
+                  duration: 0.18,
                   ease: "easeOut"
                 }}
               >

@@ -2,8 +2,11 @@ import React from 'react';
 import { Github, Linkedin, Mail, FileText, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 import AnimatedSection from './AnimatedSection';
+import { usePerformance } from '../hooks/usePerformance';
 
 const Hero: React.FC = () => {
+  const { shouldReduceAnimations, isTouch } = usePerformance();
+
   // CV URL - Ganti dengan link Google Drive atau hosting CV Anda
   const cvUrl = "https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing";
   const cvDownloadUrl = "https://drive.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID";
@@ -18,48 +21,52 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center section-consistent pt-16">
-      {/* Optimized Background Elements - Heavy effects marked for mobile optimization */}
-      <motion.div
-        className="absolute top-20 left-10 w-96 h-96 bg-primary-500/20 rounded-full fx-heavy blur-3xl glow hidden sm:block"
-        animate={{
-          y: [0, -30, 0],
-          x: [0, 20, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/20 rounded-full fx-heavy blur-3xl glow-accent hidden sm:block"
-        animate={{
-          y: [0, -25, 0],
-          x: [0, -15, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 2
-        }}
-      />
-      <motion.div
-        className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full fx-heavy blur-3xl hidden sm:block"
-        animate={{
-          rotate: [0, 360],
-          scale: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
+      {/* Heavy background → desktop non-low-end only */}
+      {!shouldReduceAnimations && (
+        <>
+          <motion.div
+            className="absolute top-20 left-10 w-96 h-96 bg-primary-500/20 rounded-full fx-heavy blur-3xl hidden sm:block"
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 20, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/20 rounded-full fx-heavy blur-3xl hidden sm:block"
+            animate={{
+              y: [0, -25, 0],
+              x: [0, -15, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full fx-heavy blur-3xl hidden sm:block"
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+        </>
+      )}
 
-      {/* Mobile-friendly background - simple gradient */}
+      {/* Mobile gradient fallback */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5 sm:hidden" />
 
       <div className="container-custom text-center relative z-10">
@@ -151,12 +158,9 @@ const Hero: React.FC = () => {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 }
                 }}
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 15px 35px rgba(14, 165, 233, 0.4)"
-                }}
+                whileHover={isTouch ? undefined : { scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
               >
                 <span className="relative z-10">Hire Me</span>
               </motion.a>
@@ -168,12 +172,9 @@ const Hero: React.FC = () => {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 }
                 }}
-                whileHover={{ 
-                  scale: 1.02,
-                  boxShadow: "0 15px 35px rgba(245, 158, 11, 0.4)"
-                }}
+                whileHover={isTouch ? undefined : { scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
               >
                 <FileText size={20} className="relative z-10" />
                 <span className="relative z-10">View CV</span>
@@ -186,12 +187,9 @@ const Hero: React.FC = () => {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0 }
                 }}
-                whileHover={{ 
-                  scale: 1.02,
-                  boxShadow: "0 15px 35px rgba(14, 165, 233, 0.2)"
-                }}
+                whileHover={isTouch ? undefined : { scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
               >
                 <span className="relative z-10">View Case Studies</span>
               </motion.a>
@@ -247,13 +245,9 @@ const Hero: React.FC = () => {
                     hidden: { opacity: 0, scale: 0 },
                     visible: { opacity: 1, scale: 1 }
                   }}
-                  whileHover={{ 
-                    scale: 1.15,
-                    rotate: 5,
-                    boxShadow: "0 10px 30px rgba(14, 165, 233, 0.3)"
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  whileHover={isTouch ? undefined : { scale: 1.1, rotate: 3 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
                 >
                   <social.icon size={20} className={`sm:w-6 sm:h-6 text-gray-300 group-hover:text-primary-400 group-hover:scale-110 transition-all duration-300`} />
                 </motion.a>

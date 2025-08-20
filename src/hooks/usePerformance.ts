@@ -5,6 +5,11 @@ export const usePerformance = () => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isLowEndDevice, setIsLowEndDevice] = useState(false);
 
+  // System hints
+  const prefersReduced = typeof window !== 'undefined' &&
+    window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   useEffect(() => {
     // Check if mobile
     const checkMobile = () => {
@@ -17,28 +22,42 @@ export const usePerformance = () => {
       setPrefersReducedMotion(mediaQuery.matches);
     };
 
-    // Enhanced low-end device detection
+    // Enhanced low-end device detection with FPS probe
     const checkLowEndDevice = () => {
-      const connection = (navigator as any).connection;
-      const isSlowConnection = connection && (
-        connection.effectiveType === 'slow-2g' ||
-        connection.effectiveType === '2g' ||
-        connection.effectiveType === '3g'
-      );
+      const dm = (navigator as any).deviceMemory ?? 4; // 0.5,1,2,4,8 (Chrome)
+      const cores = navigator.hardwareConcurrency ?? 4;
 
-      const isLowMemory = (navigator as any).deviceMemory && (navigator as any).deviceMemory <= 2;
-      const isLowCores = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
-      const isTouchDevice = 'ontouchstart' in window;
-      const isOldDevice = /Android [1-6]|iPhone OS [1-9]/.test(navigator.userAgent);
+      let isLowEnd = dm <= 2 || cores <= 4;
 
-      const isLowEnd = isSlowConnection || isLowMemory || isLowCores || (isTouchDevice && isOldDevice);
-      setIsLowEndDevice(isLowEnd);
+      // Runtime FPS probe (~1s)
+      let frames = 0;
+      let raf = 0;
+      const start = performance.now();
 
-      // Apply low-end class to document
-      if (isLowEnd) {
-        document.documentElement.classList.add('low-end');
-      }
+      const tick = () => {
+        frames++;
+        if (performance.now() - start < 1000) {
+          raf = requestAnimationFrame(tick);
+        } else {
+          if (frames < 45) { // <45 fps → degrade effects
+            isLowEnd = true;
+          }
+          setIsLowEndDevice(isLowEnd);
+
+          // Apply low-end class to document
+          if (isLowEnd) {
+            document.documentElement.classList.add('low-end');
+          }
+        }
+      };
+
+      raf = requestAnimationFrame(tick);
+
+      // Cleanup function
+      return () => cancelAnimationFrame(raf);
     };
+
+    checkLowEndDevice();
 
     checkMobile();
     checkReducedMotion();
@@ -55,10 +74,15 @@ export const usePerformance = () => {
     };
   }, []);
 
+  const shouldReduceAnimations = prefersReduced || isLowEndDevice;
+  const isTouch = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
   return {
     isMobile,
     prefersReducedMotion,
     isLowEndDevice,
-    shouldReduceAnimations: prefersReducedMotion || isLowEndDevice || isMobile
+    shouldReduceAnimations,
+    isTouch,
+    prefersReduced
   };
 };
