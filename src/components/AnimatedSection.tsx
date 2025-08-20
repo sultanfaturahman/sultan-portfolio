@@ -77,12 +77,12 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       className={className}
       initial={getInitialState()}
       whileInView={getAnimateState()}
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
+      viewport={{ once: true, margin: "0px 0px -5% 0px", amount: 0.2 }}
       transition={{
-        duration: shouldReduceAnimations ? Math.max(0.18, duration * 0.5) : Math.min(duration, 0.5),
-        delay: shouldReduceAnimations ? delay * 0.5 : delay,
-        ease: "easeOut",
-        staggerChildren: shouldReduceAnimations ? Math.max(0, stagger * 0.5) : stagger
+        duration: shouldReduceAnimations ? 0.3 : 0.6,
+        delay: shouldReduceAnimations ? delay * 0.7 : delay,
+        ease: [0.25, 0.46, 0.45, 0.94], // Consistent smooth easing
+        staggerChildren: shouldReduceAnimations ? stagger * 0.7 : stagger
       }}
     >
       {children}

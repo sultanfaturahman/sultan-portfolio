@@ -16,7 +16,13 @@ function App() {
   const shouldReduce = prefersReducedMotion || isLowEndDevice || shouldReduceAnimations;
 
   return (
-    <MotionConfig reducedMotion={shouldReduce ? "always" : "user"}>
+    <MotionConfig
+      reducedMotion={shouldReduce ? "always" : "user"}
+      transition={{
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] // Consistent smooth easing
+      }}
+    >
       <LazyMotion features={domAnimation}>
         <div className="App dark bg-dark-950 text-gray-100 min-h-screen">
           {/* Skip to main content link for screen readers */}

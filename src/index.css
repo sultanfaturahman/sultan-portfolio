@@ -55,10 +55,12 @@
     transform: none !important;
   }
 
-  /* Disable expensive animations on mobile */
+  /* Smooth consistent animations on mobile */
   * {
-    animation-duration: 0.2s !important;
-    transition-duration: 0.2s !important;
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
   }
 }
 
@@ -82,12 +84,18 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Account for fixed header */
   }
-  
+
   body {
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
     @apply bg-dark-950 text-gray-100;
+  }
+
+  /* Smooth transitions for all interactive elements */
+  button, a, [role="button"] {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   /* Custom scrollbar for dark theme */
@@ -110,11 +118,6 @@
   /* Dark theme selection */
   ::selection {
     @apply bg-primary-500/30 text-white;
-  }
-
-  /* Smooth transitions for all elements */
-  * {
-    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
 }
 

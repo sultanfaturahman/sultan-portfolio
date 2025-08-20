@@ -203,9 +203,8 @@ const Projects: React.FC = () => {
                   scale: 1.015
                 }}
                 transition={{
-                  type: "tween",
-                  duration: 0.18,
-                  ease: "easeOut"
+                  duration: 0.3,
+                  ease: [0.25, 0.46, 0.45, 0.94]
                 }}
               >
                 {/* Project Image */}
@@ -213,9 +212,8 @@ const Projects: React.FC = () => {
                   className="relative h-40 sm:h-48 bg-gradient-to-br from-blue-100 to-indigo-100 overflow-hidden"
                   whileHover={shouldReduceAnimations ? {} : { scale: 1.03 }}
                   transition={{
-                    type: shouldReduceAnimations ? "tween" : "spring",
-                    duration: shouldReduceAnimations ? 0.2 : undefined,
-                    stiffness: shouldReduceAnimations ? undefined : 300
+                    duration: 0.3,
+                    ease: [0.25, 0.46, 0.45, 0.94]
                   }}
                 >
                   <ProjectImage 

@@ -80,17 +80,17 @@ const Hero: React.FC = () => {
               transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
             >
               <motion.span
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="block"
               >
                 Hi, I'm{" "}
                 <motion.span
                   className="text-primary-400"
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.6, duration: 0.8 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   Sultan.
                 </motion.span>
@@ -102,9 +102,9 @@ const Hero: React.FC = () => {
           <AnimatedSection direction="up" delay={0.6}>
             <motion.h2
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-400 mb-6 sm:mb-8 font-medium px-4 sm:px-0"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <motion.span
                 initial={{ opacity: 0, y: 20 }}
@@ -122,7 +122,7 @@ const Hero: React.FC = () => {
               className="text-base sm:text-lg text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-4 sm:px-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2, duration: 0.8 }}
+              transition={{ delay: 0.9, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               Passionate web developer with expertise in modern frameworks and technologies. 
               Creating beautiful, functional, and user-friendly web experiences with cutting-edge design.
@@ -154,7 +154,7 @@ const Hero: React.FC = () => {
                 }}
                 whileHover={isTouch ? undefined : { scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 <span className="relative z-10">Hire Me</span>
               </motion.a>
@@ -168,7 +168,7 @@ const Hero: React.FC = () => {
                 }}
                 whileHover={isTouch ? undefined : { scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 <FileText size={20} className="relative z-10" />
                 <span className="relative z-10">View CV</span>
@@ -183,7 +183,7 @@ const Hero: React.FC = () => {
                 }}
                 whileHover={isTouch ? undefined : { scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                transition={{ type: "tween", duration: 0.2, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 <span className="relative z-10">View Case Studies</span>
               </motion.a>
