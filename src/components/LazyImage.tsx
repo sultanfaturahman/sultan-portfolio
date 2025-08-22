@@ -1,87 +1,91 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { usePerformance } from '../hooks/usePerformance';
 
 interface LazyImageProps {
   src: string;
   alt: string;
   className?: string;
-  width?: number;
-  height?: number;
   placeholder?: string;
-  fallback?: React.ReactNode;
-  priority?: boolean; // For hero images
+  priority?: boolean;
+  sizes?: string;
 }
 
 const LazyImage: React.FC<LazyImageProps> = ({
   src,
   alt,
   className = '',
-  width,
-  height,
-  placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PC9zdmc+',
-  fallback,
-  priority = false
+  placeholder = '/images/profile-placeholder.svg',
+  priority = false,
+  sizes = '100vw'
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const [isInView, setIsInView] = useState(priority);
+  const [imageSrc, setImageSrc] = useState(placeholder);
   const imgRef = useRef<HTMLImageElement>(null);
+  const { isMobileDevice } = usePerformance();
 
   useEffect(() => {
+    if (priority) {
+      setImageSrc(src);
+      return;
+    }
+
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect();
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true);
+            observer.unobserve(entry.target);
+          }
+        });
       },
-      { threshold: 0.1, rootMargin: '50px' }
+      {
+        rootMargin: isMobileDevice ? '50px' : '100px', // Smaller margin on mobile
+        threshold: 0.1
+      }
     );
 
     if (imgRef.current) {
       observer.observe(imgRef.current);
     }
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      if (imgRef.current) {
+        observer.unobserve(imgRef.current);
+      }
+    };
+  }, [src, priority, isMobileDevice]);
 
-  const handleLoad = () => {
-    setIsLoaded(true);
-  };
-
-  const handleError = () => {
-    setHasError(true);
-  };
-
-  if (hasError && fallback) {
-    return <>{fallback}</>;
-  }
+  useEffect(() => {
+    if (isInView && !isLoaded) {
+      const img = new Image();
+      img.onload = () => {
+        setImageSrc(src);
+        setIsLoaded(true);
+      };
+      img.onerror = () => {
+        // Fallback to placeholder if image fails to load
+        setImageSrc(placeholder);
+        setIsLoaded(true);
+      };
+      img.src = src;
+    }
+  }, [isInView, src, placeholder, isLoaded]);
 
   return (
-    <div ref={imgRef} className={`relative ${className}`}>
-      {!isLoaded && (
-        <img
-          src={placeholder}
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover blur-sm"
-        />
-      )}
-      {(isInView || priority) && (
-        <img
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-          onLoad={handleLoad}
-          onError={handleError}
-          loading={priority ? "eager" : "lazy"}
-          decoding="async"
-          fetchPriority={priority ? "high" : "auto"}
-        />
-      )}
-    </div>
+    <img
+      ref={imgRef}
+      src={imageSrc}
+      alt={alt}
+      className={`${className} ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+      style={{
+        transition: isMobileDevice ? 'opacity 0.2s ease-out' : 'opacity 0.3s ease-out',
+        willChange: isLoaded ? 'auto' : 'opacity'
+      }}
+      sizes={sizes}
+      loading={priority ? 'eager' : 'lazy'}
+      decoding="async"
+    />
   );
 };
 

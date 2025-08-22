@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MotionConfig, useReducedMotion, LazyMotion, domAnimation } from 'framer-motion';
 import { usePerformance } from './hooks/usePerformance';
+import { initPerformanceOptimizations } from './utils/performance';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -15,12 +16,17 @@ function App() {
   const { isLowEndDevice, shouldReduceAnimations } = usePerformance();
   const shouldReduce = prefersReducedMotion || isLowEndDevice || shouldReduceAnimations;
 
+  // Initialize performance optimizations
+  useEffect(() => {
+    initPerformanceOptimizations();
+  }, []);
+
   return (
     <MotionConfig
       reducedMotion={shouldReduce ? "always" : "user"}
       transition={{
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94] // Consistent smooth easing
+        duration: shouldReduce ? 0.3 : 0.6,
+        ease: shouldReduce ? "easeOut" : [0.25, 0.46, 0.45, 0.94]
       }}
     >
       <LazyMotion features={domAnimation}>

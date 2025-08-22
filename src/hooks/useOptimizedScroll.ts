@@ -1,69 +1,106 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
+import { usePerformance } from './usePerformance';
 
-// Optimized scroll handler with RAF throttling
-export const useOptimizedScroll = (callback: (scrollY: number) => void) => {
+export const useOptimizedScroll = (callback: (scrollY: number) => void, throttleMs: number = 16) => {
+  const { isMobileDevice } = usePerformance();
   const ticking = useRef(false);
   const lastScrollY = useRef(0);
+  
+  // Optimize throttle for mobile devices
+  const optimizedThrottleMs = isMobileDevice ? Math.max(throttleMs * 2, 32) : throttleMs;
 
-  const handleScroll = useCallback(() => {
-    if (ticking.current) return;
+  const updateScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
     
-    ticking.current = true;
-    requestAnimationFrame(() => {
-      const scrollY = window.scrollY;
-      
-      // Only call callback if scroll position changed significantly
-      if (Math.abs(scrollY - lastScrollY.current) > 1) {
-        callback(scrollY);
-        lastScrollY.current = scrollY;
-      }
-      
-      ticking.current = false;
-    });
+    // Only update if scroll position actually changed
+    if (Math.abs(currentScrollY - lastScrollY.current) > 1) {
+      callback(currentScrollY);
+      lastScrollY.current = currentScrollY;
+    }
+    
+    ticking.current = false;
   }, [callback]);
 
+  const onScroll = useCallback(() => {
+    if (!ticking.current) {
+      requestAnimationFrame(updateScroll);
+      ticking.current = true;
+    }
+  }, [updateScroll]);
+
   useEffect(() => {
-    // Use passive listener for better performance
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Use passive listener for better performance on mobile
+    const options: AddEventListenerOptions = { passive: true };
+    
+    window.addEventListener('scroll', onScroll, options);
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', onScroll, options);
     };
-  }, [handleScroll]);
+  }, [onScroll]);
+
+  return lastScrollY.current;
 };
 
-// Intersection Observer hook for viewport detection
+// Hook untuk smooth scroll yang dioptimalkan untuk mobile
+export const useSmoothScroll = () => {
+  const { isMobileDevice } = usePerformance();
+  
+  const scrollTo = useCallback((target: string | number, offset: number = 0) => {
+    const targetElement = typeof target === 'string' ? document.querySelector(target) : null;
+    const targetPosition = typeof target === 'number' ? target : 
+      targetElement ? (targetElement as HTMLElement).offsetTop : 0;
+    
+    const finalPosition = targetPosition - offset;
+    
+    if (isMobileDevice) {
+      // On mobile, use instant scroll for better performance
+      window.scrollTo({
+        top: finalPosition,
+        behavior: 'auto'
+      });
+    } else {
+      // On desktop, use smooth scroll
+      window.scrollTo({
+        top: finalPosition,
+        behavior: 'smooth'
+      });
+    }
+  }, [isMobileDevice]);
+
+  return { scrollTo };
+};
+
+// Hook untuk intersection observer yang dioptimalkan
 export const useIntersectionObserver = (
-  callback: (entries: IntersectionObserverEntry[]) => void,
+  callback: (isIntersecting: boolean) => void,
   options: IntersectionObserverInit = {}
 ) => {
-  const observer = useRef<IntersectionObserver | null>(null);
+  const { isMobileDevice } = usePerformance();
+  
+  // Optimize options for mobile
+  const optimizedOptions: IntersectionObserverInit = {
+    rootMargin: isMobileDevice ? '20px' : '50px',
+    threshold: isMobileDevice ? 0.1 : 0.2,
+    ...options
+  };
 
-  const observe = useCallback((element: Element) => {
-    if (observer.current) {
-      observer.current.observe(element);
-    }
-  }, []);
-
-  const unobserve = useCallback((element: Element) => {
-    if (observer.current) {
-      observer.current.unobserve(element);
-    }
-  }, []);
+  const elementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    observer.current = new IntersectionObserver(callback, {
-      rootMargin: '0px 0px -10% 0px',
-      threshold: 0.1,
-      ...options
-    });
+    const element = elementRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      callback(entry.isIntersecting);
+    }, optimizedOptions);
+
+    observer.observe(element);
 
     return () => {
-      if (observer.current) {
-        observer.current.disconnect();
-      }
+      observer.unobserve(element);
     };
-  }, [callback, options]);
+  }, [callback, optimizedOptions]);
 
-  return { observe, unobserve };
+  return elementRef;
 };

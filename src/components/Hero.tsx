@@ -10,12 +10,9 @@ const Hero: React.FC = () => {
   // CV URL - Ganti dengan link Google Drive atau hosting CV Anda
   const cvUrl = "https://drive.google.com/file/d/1IFCbJOiFbQDxaGe-FV4Hq4BmEsRCJNG-/view?usp=sharing";
 
-
   const handleViewCV = () => {
     window.open(cvUrl, '_blank');
   };
-
-
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center section-consistent pt-20">
@@ -64,8 +61,8 @@ const Hero: React.FC = () => {
         </>
       )}
 
-      {/* Mobile-optimized static gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/3 to-accent-500/3 lg:hidden" />
+      {/* Mobile-optimized static gradient - lighter version */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/2 to-accent-500/2 lg:hidden" />
 
       <div className="container-custom text-center relative z-10">
         <div className="max-w-4xl mx-auto">
