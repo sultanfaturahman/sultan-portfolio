@@ -53,33 +53,8 @@ const Contact: React.FC = () => {
 
   return (
     <section id="contact" className="section-consistent section-padding">
-      {/* Enhanced Background Animation Elements */}
-      <motion.div
-        className="absolute top-0 right-1/4 w-96 h-96 bg-gradient-to-br from-accent/20 to-purple-500/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3],
-          rotate: [0, 90, 0],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-tr from-blue-500/20 to-cyan-500/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1.1, 1, 1.1],
-          opacity: [0.2, 0.4, 0.2],
-          rotate: [180, 270, 180],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      {/* Subtle static background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/3 via-blue-500/2 to-purple-500/3" />
 
       <div className="container-custom relative z-10">
         <AnimatedSection direction="up" className="text-center mb-16">
@@ -189,28 +164,13 @@ const Contact: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <motion.div
-                  className="absolute -top-4 -right-4 w-16 h-16 bg-emerald-500/20 rounded-full blur-xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0.8, 0.5],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-emerald-500/10 rounded-full blur-xl" />
                 <h4 className="font-bold text-white mb-3 text-lg relative z-10">Current Availability</h4>
                 <p className="text-slate-300 text-base mb-4 relative z-10">
                   I'm currently available for new projects and opportunities.
                 </p>
                 <div className="flex items-center space-x-3 relative z-10">
-                  <motion.div
-                    className="w-4 h-4 bg-emerald-500 rounded-full shadow-glow"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
+                  <div className="w-4 h-4 bg-emerald-500 rounded-full shadow-glow" />
                   <span className="text-base text-emerald-400 font-semibold">Available for work</span>
                 </div>
               </motion.div>
@@ -240,19 +200,8 @@ const Contact: React.FC = () => {
             }}
             transition={{ duration: 0.6 }}
           >
-            {/* Background decoration */}
-            <motion.div
-              className="absolute -bottom-10 -left-10 w-32 h-32 bg-gradient-to-tr from-accent/20 to-purple-500/20 rounded-full blur-2xl"
-              animate={{
-                scale: [1, 1.3, 1],
-                rotate: [0, 180, 0],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
+            {/* Static background decoration */}
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-gradient-to-tr from-accent/10 to-purple-500/10 rounded-full blur-2xl" />
 
             <h3 className="text-3xl font-bold text-white mb-8 relative z-10">Send Me a Message</h3>
 
@@ -406,31 +355,9 @@ const Contact: React.FC = () => {
             }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            {/* Background decorations */}
-            <motion.div
-              className="absolute -top-16 -right-16 w-48 h-48 bg-white/10 rounded-full blur-2xl"
-              animate={{
-                scale: [1, 1.2, 1],
-                rotate: [0, 90, 0],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            <motion.div
-              className="absolute -bottom-12 -left-12 w-40 h-40 bg-white/5 rounded-full blur-xl"
-              animate={{
-                scale: [1.1, 1, 1.1],
-                rotate: [180, 270, 180],
-              }}
-              transition={{
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
+            {/* Static background decorations */}
+            <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/5 rounded-full blur-2xl" />
+            <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-white/3 rounded-full blur-xl" />
 
             <div className="relative z-10">
               <motion.h3

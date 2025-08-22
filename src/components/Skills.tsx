@@ -90,46 +90,8 @@ const Skills: React.FC = () => {
 
   return (
     <section id="skills" className="section-consistent section-padding">
-      {/* Enhanced Background Animation Elements */}
-      <motion.div
-        className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.3, 0.6, 0.3],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-l from-accent/20 to-pink-500/20 rounded-full blur-3xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.2, 0.4, 0.2],
-          rotate: [360, 180, 0],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 rounded-full blur-2xl"
-        animate={{
-          x: [-50, 50, -50],
-          y: [-30, 30, -30],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      {/* Subtle static background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/3 to-accent/5" />
 
       <div className="container-custom relative z-10">
         <AnimatedSection direction="up" className="text-center mb-16">
@@ -173,7 +135,7 @@ const Skills: React.FC = () => {
                     transition={{ type: "spring", stiffness: 400 }}
                   >
                     <div className={`inline-flex items-center px-4 py-3 rounded-xl border ${level.bgColor} ${level.color} font-semibold text-sm mb-2 backdrop-blur-sm`}>
-                      <Star size={16} className="mr-2 animate-pulse-glow" />
+                      <Star size={16} className="mr-2" />
                       {level.label}
                     </div>
                     <p className="text-xs text-slate-400 leading-relaxed">{level.description}</p>
@@ -301,30 +263,13 @@ const Skills: React.FC = () => {
             }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            {/* Background decoration */}
-            <motion.div
-              className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-accent/20 to-purple-500/20 rounded-full blur-2xl"
-              animate={{
-                scale: [1, 1.2, 1],
-                rotate: [0, 90, 0],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
+            {/* Static background decoration */}
+            <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-accent/10 to-purple-500/10 rounded-full blur-2xl" />
 
-            <motion.div
-              className="text-center mb-10 relative z-10"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <div className="text-center mb-10 relative z-10">
               <h3 className="text-3xl font-bold gradient-text mb-4">Professional Competencies</h3>
               <p className="text-slate-300 text-lg">Business-focused skills and methodologies</p>
-            </motion.div>
+            </div>
             
             <motion.div 
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -417,44 +362,10 @@ const Skills: React.FC = () => {
             }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            {/* Enhanced Background Animations */}
-            <motion.div
-              className="absolute -top-16 -right-16 w-64 h-64 bg-white/10 rounded-full blur-2xl"
-              animate={{
-                scale: [1, 1.4, 1],
-                rotate: [0, 180, 360],
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            />
-            <motion.div
-              className="absolute -bottom-12 -left-12 w-48 h-48 bg-white/5 rounded-full blur-xl"
-              animate={{
-                scale: [1.2, 1, 1.2],
-                rotate: [360, 180, 0],
-              }}
-              transition={{
-                duration: 15,
-                repeat: Infinity,
-                ease: "linear"
-              }}
-            />
-            <motion.div
-              className="absolute top-1/2 left-1/2 w-32 h-32 bg-white/5 rounded-full blur-lg"
-              animate={{
-                x: [-20, 20, -20],
-                y: [-15, 15, -15],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
+            {/* Static background decorations */}
+            <div className="absolute -top-16 -right-16 w-64 h-64 bg-white/5 rounded-full blur-2xl" />
+            <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-white/3 rounded-full blur-xl" />
+            <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-white/3 rounded-full blur-lg" />
 
             <motion.h3
               className="text-3xl md:text-4xl font-bold mb-6 relative z-10 text-white"

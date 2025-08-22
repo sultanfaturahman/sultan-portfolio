@@ -115,7 +115,7 @@ const Header: React.FC = () => {
               whileHover={{ color: "#0ea5e9" }}
               transition={{ duration: 0.2 }}
             >
-              Portfolio
+              Sultan
             </motion.span>
           </motion.div>
 

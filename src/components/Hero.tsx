@@ -16,50 +16,8 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center section-consistent pt-20">
-      {/* Heavy background → desktop non-low-end only */}
-      {!shouldReduceAnimations && !isMobileDevice && (
-        <>
-          <motion.div
-            className="absolute top-20 left-10 w-96 h-96 bg-primary-500/20 rounded-full fx-heavy blur-3xl hidden lg:block"
-            animate={{
-              y: [0, -30, 0],
-              x: [0, 20, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/20 rounded-full fx-heavy blur-3xl hidden lg:block"
-            animate={{
-              y: [0, -25, 0],
-              x: [0, -15, 0],
-              scale: [1, 1.2, 1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full fx-heavy blur-3xl hidden lg:block"
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        </>
-      )}
+      {/* Subtle static background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/3 via-transparent to-accent-500/3" />
 
       {/* Mobile-optimized static gradient - lighter version */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-500/2 to-accent-500/2 lg:hidden" />
@@ -151,7 +109,7 @@ const Hero: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                <span className="relative z-10">Hire Me</span>
+                <span className="relative z-10">Let's Chat</span>
               </motion.a>
               
               <motion.button

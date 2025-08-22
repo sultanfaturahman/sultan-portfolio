@@ -57,33 +57,7 @@ const Experience: React.FC = () => {
   return (
     <section id="experience" className="section-consistent section-padding">
       {/* Background Elements */}
-      <motion.div
-        className="absolute top-1/4 left-0 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          x: [0, 40, 0],
-          rotate: [0, 90, 180],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/3 right-0 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, -50, 0],
-          y: [0, 30, 0],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 8
-        }}
-      />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/3 via-transparent to-accent-500/3" />
 
       <div className="container-custom relative z-10">
         <motion.div 

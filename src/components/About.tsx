@@ -6,33 +6,7 @@ const About: React.FC = () => {
   return (
     <section id="about" className="section-consistent section-padding">
       {/* Background Elements */}
-      <motion.div
-        className="absolute top-20 left-10 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          x: [0, 50, 0],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          x: [0, -30, 0],
-          y: [0, 30, 0],
-        }}
-        transition={{
-          duration: 15,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 5
-        }}
-      />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/3 via-transparent to-accent-500/3" />
       
       <div className="container-custom relative z-10">
         <motion.div 
