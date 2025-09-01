@@ -138,7 +138,8 @@ const Hero: React.FC = () => {
               </motion.div>
             </AnimatedSection>
 
-              {/* Social Icons */}
+            {/* Social Icons */}
+            <AnimatedSection direction="up" delay={1.8}>
               <motion.div
                 className="flex justify-center lg:justify-start space-x-4 mb-10 sm:mb-14"
                 initial={{ opacity: 0, y: 20 }}
