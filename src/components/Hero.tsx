@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Kicker */}
+            {/* Kicker
             <AnimatedSection direction="up" delay={0.1}>
               <motion.div
                 className="inline-block px-4 py-2 bg-primary-500/10 text-primary-400 border border-primary-500/30 rounded-full text-sm font-semibold mb-5 tracking-wide"
@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
               >
                 Frontend Developer
               </motion.div>
-            </AnimatedSection>
+            </AnimatedSection> */}
 
             {/* Main Heading */}
             <AnimatedSection direction="up" delay={0.2}>
