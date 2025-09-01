@@ -82,9 +82,9 @@ const Hero: React.FC = () => {
               </motion.p>
             </AnimatedSection>
 
-            {/* CTA Button */}
+            {/* CTA Buttons */}
             <AnimatedSection direction="up" delay={0.8}>
-              <motion.div className="mb-12">
+              <motion.div className="mb-12 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <motion.a
                   href="#contact"
                   className="inline-flex items-center px-6 py-4 bg-primary-500 hover:bg-primary-400 text-black font-bold rounded-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
@@ -96,6 +96,19 @@ const Hero: React.FC = () => {
                 >
                   LET'S CHAT!
                 </motion.a>
+                
+                <motion.button
+                  onClick={handleViewCV}
+                  className="inline-flex items-center gap-2 px-6 py-4 bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 hover:border-slate-600/50 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.0, duration: 0.6 }}
+                  whileHover={isTouch ? undefined : { scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <FileText size={18} />
+                  VIEW CV
+                </motion.button>
               </motion.div>
             </AnimatedSection>
 
