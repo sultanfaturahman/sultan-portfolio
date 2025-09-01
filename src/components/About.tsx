@@ -34,117 +34,68 @@ const About: React.FC = () => {
           </motion.p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Column - Image and Info */}
+        <div className="max-w-4xl mx-auto">
+          {/* Personal Info Cards */}
           <motion.div 
-            className="space-y-8"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12"
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {/* Profile Image */}
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <motion.div
-                className="w-96 h-[30rem] sm:w-[26rem] sm:h-[32rem] mx-auto relative profile-container"
-              >
-                <img
-                  src="/images/profile/profile.png"
-                  alt="Sultan Faturahman"
-                  className="w-full h-full object-contain profile-image"
-                  style={{
-                    filter: 'drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3))',
-                    background: 'transparent'
-                  }}
-                  onError={(e) => {
-                    // Fallback ke placeholder SVG
-                    const target = e.target as HTMLImageElement;
-                    target.src = "/images/profile-placeholder.svg";
-                    target.className = "w-full h-full object-contain";
-                    target.onerror = () => {
-                      // Final fallback ke foto asli
-                      target.src = "/images/profile/sultan-profile.jpg";
-                      target.className = "w-full h-full object-contain";
-                    };
-                  }}
-                />
-              </motion.div>
-              <motion.div
-                className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-24 h-24 sm:w-28 sm:h-28 bg-accent-gradient rounded-full flex items-center justify-center hover-lift"
-                style={{ boxShadow: 'none' }}
-              >
-                <span className="text-white font-bold text-2xl sm:text-3xl">5+</span>
-              </motion.div>
-            </motion.div>
-
-            {/* Personal Info */}
-            <motion.div 
-              className="space-y-4"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.1,
-                    delayChildren: 0.3
-                  }
+            variants={{
+              hidden: {},
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                  delayChildren: 0.2
                 }
+              }
+            }}
+          >
+            <motion.div
+              className="flex items-center space-x-3 glass p-4 rounded-lg card-hover"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
               }}
             >
-              <motion.div
-                className="flex items-center space-x-3 glass p-4 rounded-lg card-hover"
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0 }
-                }}
-              >
-                <motion.div className="text-hover">
-                  <GraduationCap size={20} className="text-primary-400" />
-                </motion.div>
-                <span className="text-gray-300">Universitas Sultan Ageng Tirtayasa</span>
+              <motion.div className="text-hover">
+                <GraduationCap size={20} className="text-primary-400" />
               </motion.div>
-              <motion.div
-                className="flex items-center space-x-3 glass p-4 rounded-lg card-hover"
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0 }
-                }}
-              >
-                <motion.div className="text-hover">
-                  <MapPin size={20} className="text-primary-400" />
-                </motion.div>
-                <span className="text-gray-300">Indonesia</span>
+              <span className="text-gray-300 text-sm">Universitas Sultan Ageng Tirtayasa</span>
+            </motion.div>
+            <motion.div
+              className="flex items-center space-x-3 glass p-4 rounded-lg card-hover"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+            >
+              <motion.div className="text-hover">
+                <MapPin size={20} className="text-primary-400" />
               </motion.div>
-              <motion.div
-                className="flex items-center space-x-3 glass p-4 rounded-lg card-hover"
-                variants={{
-                  hidden: { opacity: 0, x: -20 },
-                  visible: { opacity: 1, x: 0 }
-                }}
-              >
-                <motion.div className="text-hover">
-                  <Calendar size={20} className="text-accent-400" />
-                </motion.div>
-                <span className="text-gray-300">Available for opportunities</span>
+              <span className="text-gray-300 text-sm">Indonesia</span>
+            </motion.div>
+            <motion.div
+              className="flex items-center space-x-3 glass p-4 rounded-lg card-hover"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+            >
+              <motion.div className="text-hover">
+                <Calendar size={20} className="text-accent-400" />
               </motion.div>
+              <span className="text-gray-300 text-sm">Available for opportunities</span>
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Description */}
+          {/* Description Section */}
           <motion.div 
             className="space-y-6"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
           >
             <motion.h3 
               className="text-2xl font-bold text-white"

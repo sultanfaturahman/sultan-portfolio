@@ -41,12 +41,36 @@ const Footer: React.FC = () => {
               transition={{ type: "spring", stiffness: 400 }}
             >
               <motion.div
-                className="w-12 h-12 bg-accent-gradient rounded-xl flex items-center justify-center shadow-glow-accent"
-                whileHover={{ rotate: 5 }}
+                className="w-12 h-12 flex items-center justify-center logo-image"
+                whileHover={{
+                  rotate: 5,
+                  scale: 1.05,
+                  filter: "drop-shadow(0 8px 25px rgba(14, 165, 233, 0.6))"
+                }}
+                transition={{ type: "spring", stiffness: 400 }}
               >
-                <span className="text-white font-bold text-2xl">P</span>
+                <img
+                  src="/images/logo.png"
+                  alt="Sultan Faturahman"
+                  className="w-12 h-12 object-contain logo-image"
+                  style={{
+                    filter: 'drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3))',
+                    background: 'transparent'
+                  }}
+                  onError={(e) => {
+                    // Fallback ke placeholder SVG
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/images/profile-placeholder.svg';
+                    target.className = 'w-10 h-10 object-contain';
+                    target.onerror = () => {
+                      // Final fallback ke huruf P
+                      target.style.display = 'none';
+                      target.parentElement!.innerHTML = '<span class="text-white font-bold text-xl flex items-center justify-center w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl">P</span>';
+                    };
+                  }}
+                />
               </motion.div>
-              <span className="text-3xl font-bold gradient-text">Portfolio</span>
+              <span className="text-3xl font-bold gradient-text">Sultan</span>
             </motion.div>
             <p className="text-slate-300 leading-relaxed max-w-sm text-lg">
               Professional website developer passionate about creating beautiful,
@@ -287,19 +311,7 @@ const Footer: React.FC = () => {
                 }}
               >
                 <span>Made with</span>
-                <motion.div
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 5, -5, 0]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <Heart size={18} className="text-red-500" />
-                </motion.div>
+                <Heart size={18} className="text-red-500" />
                 <span>using React & Tailwind CSS</span>
               </motion.div>
             </motion.div>
@@ -312,18 +324,7 @@ const Footer: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.8, duration: 0.5 }}
             >
-              <motion.div
-                className="w-16 h-1 bg-accent-gradient rounded-full"
-                animate={{
-                  scaleX: [1, 1.2, 1],
-                  opacity: [0.5, 1, 0.5],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
+              <div className="w-16 h-1 bg-accent-gradient rounded-full" />
             </motion.div>
           </motion.div>
         </AnimatedSection>

@@ -195,9 +195,9 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 rounded-xl font-semibold 
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 text-white px-4 py-2 text-sm rounded-lg font-semibold 
            hover:from-primary-400 hover:to-primary-500 transition-all duration-300 transform hover:scale-105 
-           relative overflow-hidden shadow-glow hover:shadow-glow-lg;
+           relative overflow-hidden;
   }
   
   .btn-primary::before {
@@ -216,9 +216,9 @@
   }
   
   .btn-secondary {
-    @apply bg-dark-800/50 backdrop-blur-sm border-2 border-primary-500/50 text-gray-100 px-6 py-3 rounded-xl 
+    @apply bg-dark-800/50 backdrop-blur-sm border-2 border-primary-500/50 text-gray-100 px-4 py-2 text-sm rounded-lg 
            font-semibold hover:bg-primary-500/20 hover:border-primary-400 transition-all duration-300 
-           relative overflow-hidden shadow-dark-lg hover:shadow-glow;
+           relative overflow-hidden;
   }
   
   .btn-secondary::before {
@@ -237,9 +237,9 @@
   }
 
   .btn-cv {
-    @apply bg-gradient-to-r from-accent-500 to-accent-600 text-white px-6 py-3 rounded-xl font-semibold 
+    @apply bg-gradient-to-r from-accent-500 to-accent-600 text-white px-4 py-2 text-sm rounded-lg font-semibold 
            hover:from-accent-400 hover:to-accent-500 transition-all duration-300 transform hover:scale-105 
-           relative overflow-hidden shadow-lg hover:shadow-xl;
+           relative overflow-hidden;
   }
 
   .btn-cv::before {
@@ -278,18 +278,9 @@
 
   /* Enhanced Gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, #0ea5e9, #3b82f6, #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200% 200%;
-    animation: gradient-shift 3s ease-in-out infinite;
+    color: white;
   }
 
-  @keyframes gradient-shift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-  }
 
   /* Enhanced Floating animation */
   @keyframes float {
