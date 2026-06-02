@@ -1,227 +1,79 @@
 import React from 'react';
-import { GraduationCap, MapPin, Calendar } from 'lucide-react';
-import { motion } from 'framer-motion';
+import Reveal from './Reveal';
+
+const meta = [
+  { label: 'Education', value: 'Universitas Sultan Ageng Tirtayasa' },
+  { label: 'Discipline', value: 'Computer Science' },
+  { label: 'Location', value: 'Indonesia' },
+  { label: 'Status', value: 'Open to opportunities' },
+];
+
+const qualities = [
+  ['Problem solver', 'Creative solutions for complex challenges.'],
+  ['Team player', 'Collaborative, communicative approach.'],
+  ['Quality focused', 'Attention to detail and best practices.'],
+  ['Always learning', 'Continually refining the craft.'],
+];
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="section-consistent section-padding">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/3 via-transparent to-accent-500/3" />
-      
-      <div className="container-custom relative z-10">
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h2 
-            className="text-4xl font-bold text-white mb-4"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            About Me
-          </motion.h2>
-          <motion.p 
-            className="text-lg text-gray-400 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            Get to know me better - my background, education, and what drives me as a developer
-          </motion.p>
-        </motion.div>
+    <section id="about" className="section">
+      <div className="container-page">
+        <div className="rule pt-6 grid lg:grid-cols-12 gap-8 lg:gap-12">
+          {/* Section label */}
+          <div className="lg:col-span-3">
+            <Reveal className="flex items-baseline gap-3 lg:sticky lg:top-28">
+              <span className="section-index">01</span>
+              <span className="eyebrow">About</span>
+            </Reveal>
+          </div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Personal Info Cards */}
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  staggerChildren: 0.1,
-                  delayChildren: 0.2
-                }
-              }
-            }}
-          >
-            <motion.div
-              className="flex items-center space-x-3 glass p-4 rounded-lg card-hover"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-            >
-              <motion.div className="text-hover">
-                <GraduationCap size={20} className="text-primary-400" />
-              </motion.div>
-              <span className="text-gray-300 text-sm">Universitas Sultan Ageng Tirtayasa</span>
-            </motion.div>
-            <motion.div
-              className="flex items-center space-x-3 glass p-4 rounded-lg card-hover"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-            >
-              <motion.div className="text-hover">
-                <MapPin size={20} className="text-primary-400" />
-              </motion.div>
-              <span className="text-gray-300 text-sm">Indonesia</span>
-            </motion.div>
-            <motion.div
-              className="flex items-center space-x-3 glass p-4 rounded-lg card-hover"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 }
-              }}
-            >
-              <motion.div className="text-hover">
-                <Calendar size={20} className="text-accent-400" />
-              </motion.div>
-              <span className="text-gray-300 text-sm">Available for opportunities</span>
-            </motion.div>
-          </motion.div>
+          {/* Content */}
+          <div className="lg:col-span-9">
+            <Reveal>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight max-w-3xl text-balance">
+                A web developer with a focus on scalable systems and the experience
+                of the people who use them.
+              </h2>
+            </Reveal>
 
-          {/* Description Section */}
-          <motion.div 
-            className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            <motion.h3 
-              className="text-2xl font-bold text-white"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              Passionate Web Developer with a Focus on Scalable System dan User Experience
-            </motion.h3>
-            
-            <motion.p 
-              className="text-gray-400 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              I am a dedicated website developer with a strong foundation in both frontend and backend technologies. 
-              My journey in web development started during my studies at Universitas Sultan Ageng Tirtayasa, 
-              where I developed a passion for creating digital solutions that make a difference.
-            </motion.p>
+            <div className="mt-12 grid md:grid-cols-2 gap-10 lg:gap-16">
+              <Reveal delay={0.05} className="space-y-5 text-ink-soft leading-relaxed max-w-prose">
+                <p>
+                  My journey in web development began at Universitas Sultan Ageng
+                  Tirtayasa, where I built a strong foundation across both frontend and
+                  backend. Since then I&rsquo;ve shipped e-commerce platforms, company
+                  profiles, and membership systems.
+                </p>
+                <p>
+                  I care about writing clean, maintainable code and pairing technical
+                  rigour with a sense for design — so the result is fast, accessible,
+                  and genuinely pleasant to use.
+                </p>
+              </Reveal>
 
-            <motion.p 
-              className="text-gray-400 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-            >
-              Throughout my career, I've had the privilege of working on diverse projects that have honed my skills 
-              in modern web technologies. From e-commerce platforms to company profiles and membership systems, 
-              I've consistently delivered high-quality solutions that prioritize both functionality and user experience.
-            </motion.p>
+              <Reveal delay={0.1}>
+                <dl className="divide-y divide-line border-t border-line">
+                  {meta.map((m) => (
+                    <div key={m.label} className="flex justify-between gap-6 py-3">
+                      <dt className="eyebrow pt-1">{m.label}</dt>
+                      <dd className="font-serif text-lg text-right">{m.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </Reveal>
+            </div>
 
-            <motion.p 
-              className="text-gray-400 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-            >
-              My approach combines technical expertise with creative problem-solving, ensuring that every project 
-              not only meets technical requirements but also exceeds user expectations. I believe in writing clean, 
-              maintainable code and staying updated with the latest industry trends and best practices.
-            </motion.p>
-
-            {/* Key Points */}
-            <motion.div 
-              className="grid grid-cols-2 gap-4 pt-4"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.1,
-                    delayChildren: 0.6
-                  }
-                }
-              }}
-            >
-              <motion.div 
-                className="glass p-4 rounded-lg border border-primary-500/20 hover:border-primary-400/40 transition-all duration-300"
-                variants={{
-                  hidden: { opacity: 0, scale: 0.8 },
-                  visible: { opacity: 1, scale: 1 }
-                }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: "0 10px 30px rgba(14, 165, 233, 0.2)" 
-                }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                <h4 className="font-semibold text-white mb-2">Problem Solver</h4>
-                <p className="text-sm text-gray-400">Creative solutions for complex challenges</p>
-              </motion.div>
-              <motion.div 
-                className="glass p-4 rounded-lg border border-primary-500/20 hover:border-primary-400/40 transition-all duration-300"
-                variants={{
-                  hidden: { opacity: 0, scale: 0.8 },
-                  visible: { opacity: 1, scale: 1 }
-                }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: "0 10px 30px rgba(14, 165, 233, 0.2)" 
-                }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                <h4 className="font-semibold text-white mb-2">Team Player</h4>
-                <p className="text-sm text-gray-400">Collaborative approach to development</p>
-              </motion.div>
-              <motion.div 
-                className="glass p-4 rounded-lg border border-accent-500/20 hover:border-accent-400/40 transition-all duration-300"
-                variants={{
-                  hidden: { opacity: 0, scale: 0.8 },
-                  visible: { opacity: 1, scale: 1 }
-                }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: "0 10px 30px rgba(245, 158, 11, 0.2)" 
-                }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                <h4 className="font-semibold text-white mb-2">Quality Focused</h4>
-                <p className="text-sm text-gray-400">Attention to detail and best practices</p>
-              </motion.div>
-              <motion.div 
-                className="glass p-4 rounded-lg border border-accent-500/20 hover:border-accent-400/40 transition-all duration-300"
-                variants={{
-                  hidden: { opacity: 0, scale: 0.8 },
-                  visible: { opacity: 1, scale: 1 }
-                }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: "0 10px 30px rgba(245, 158, 11, 0.2)" 
-                }}
-                transition={{ type: "spring", stiffness: 400 }}
-              >
-                <h4 className="font-semibold text-white mb-2">Continuous Learner</h4>
-                <p className="text-sm text-gray-400">Always improving and adapting</p>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+            {/* Qualities */}
+            <Reveal delay={0.1} className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line">
+              {qualities.map(([title, desc]) => (
+                <div key={title} className="bg-paper p-6">
+                  <h3 className="font-serif text-xl">{title}</h3>
+                  <p className="mt-2 text-sm text-muted leading-relaxed">{desc}</p>
+                </div>
+              ))}
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
@@ -229,4 +81,3 @@ const About: React.FC = () => {
 };
 
 export default About;
-
