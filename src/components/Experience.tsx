@@ -1,5 +1,5 @@
 import React from 'react';
-import Reveal from './Reveal';
+import { Reveal, TextReveal, ArrowLink } from './motion';
 
 interface Role {
   year: string;
@@ -72,20 +72,18 @@ const Experience: React.FC = () => {
             </Reveal>
           </div>
           <div className="lg:col-span-9">
-            <Reveal>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight max-w-3xl text-balance">
-                Roles and projects that have shaped how I build.
-              </h2>
-            </Reveal>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight max-w-3xl">
+              <TextReveal text="Roles and projects that have shaped how I build." />
+            </h2>
           </div>
         </div>
 
         <div className="mt-14 border-t border-line">
           {roles.map((r) => (
             <Reveal key={`${r.company}-${r.year}`}>
-              <article className="grid lg:grid-cols-12 gap-6 lg:gap-12 py-10 lg:py-14 border-b border-line">
-                <div className="lg:col-span-3">
-                  <p className="font-serif text-3xl">{r.year}</p>
+              <article className="group grid lg:grid-cols-12 gap-6 lg:gap-12 py-10 lg:py-14 border-b border-line transition-colors duration-300 hover:bg-paper-dim/60">
+                <div className="lg:col-span-3 lg:pl-2 transition-[padding] duration-300 group-hover:lg:pl-5">
+                  <p className="font-serif text-3xl transition-colors duration-300 group-hover:text-accent">{r.year}</p>
                   <p className="mt-2 eyebrow">{r.context}</p>
                 </div>
 
@@ -111,14 +109,9 @@ const Experience: React.FC = () => {
                       ))}
                     </ul>
                     {r.website && (
-                      <a
-                        href={r.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="link-underline text-sm"
-                      >
-                        Visit site &nearr;
-                      </a>
+                      <ArrowLink href={r.website} className="text-sm">
+                        Visit site
+                      </ArrowLink>
                     )}
                   </div>
                 </div>

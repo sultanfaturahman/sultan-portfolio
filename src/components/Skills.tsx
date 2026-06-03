@@ -1,5 +1,5 @@
 import React from 'react';
-import Reveal from './Reveal';
+import { Reveal, TextReveal } from './motion';
 
 interface Skill {
   name: string;
@@ -90,11 +90,9 @@ const Skills: React.FC = () => {
             </Reveal>
           </div>
           <div className="lg:col-span-9">
-            <Reveal>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight max-w-3xl text-balance">
-                The tools and disciplines I reach for.
-              </h2>
-            </Reveal>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight max-w-3xl">
+              <TextReveal text="The tools and disciplines I reach for." />
+            </h2>
           </div>
         </div>
 
@@ -106,9 +104,9 @@ const Skills: React.FC = () => {
                 {cat.skills.map((s) => (
                   <li
                     key={s.name}
-                    className="flex items-baseline justify-between gap-4 py-2.5 border-b border-line"
+                    className="group/skill flex items-baseline justify-between gap-4 py-2.5 border-b border-line transition-[padding] duration-300 hover:pl-2"
                   >
-                    <span className="text-ink-soft">{s.name}</span>
+                    <span className="text-ink-soft transition-colors duration-300 group-hover/skill:text-accent">{s.name}</span>
                     <span className="font-mono text-[0.7rem] uppercase tracking-wide text-muted whitespace-nowrap">
                       {s.level} · {s.years}
                     </span>

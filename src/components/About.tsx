@@ -1,5 +1,6 @@
 import React from 'react';
-import Reveal from './Reveal';
+import { motion } from 'framer-motion';
+import { Reveal, TextReveal } from './motion';
 
 const meta = [
   { label: 'Education', value: 'Universitas Sultan Ageng Tirtayasa' },
@@ -15,12 +16,13 @@ const qualities = [
   ['Always learning', 'Continually refining the craft.'],
 ];
 
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 const About: React.FC = () => {
   return (
-    <section id="about" className="section">
+    <section id="about" className="section relative z-10">
       <div className="container-page">
         <div className="rule pt-6 grid lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Section label */}
           <div className="lg:col-span-3">
             <Reveal className="flex items-baseline gap-3 lg:sticky lg:top-28">
               <span className="section-index">01</span>
@@ -28,14 +30,10 @@ const About: React.FC = () => {
             </Reveal>
           </div>
 
-          {/* Content */}
           <div className="lg:col-span-9">
-            <Reveal>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight max-w-3xl text-balance">
-                A web developer with a focus on scalable systems and the experience
-                of the people who use them.
-              </h2>
-            </Reveal>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight max-w-3xl">
+              <TextReveal text="A web developer focused on scalable systems and the experience of the people who use them." />
+            </h2>
 
             <div className="mt-12 grid md:grid-cols-2 gap-10 lg:gap-16">
               <Reveal delay={0.05} className="space-y-5 text-ink-soft leading-relaxed max-w-prose">
@@ -64,15 +62,29 @@ const About: React.FC = () => {
               </Reveal>
             </div>
 
-            {/* Qualities */}
-            <Reveal delay={0.1} className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line">
+            {/* Qualities — staggered reveal + hover lift */}
+            <motion.div
+              className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '0px 0px -12%' }}
+              transition={{ staggerChildren: 0.12 }}
+            >
               {qualities.map(([title, desc]) => (
-                <div key={title} className="bg-paper p-6">
+                <motion.div
+                  key={title}
+                  className="bg-paper p-6 transition-colors duration-300 hover:bg-paper-dim"
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+                  }}
+                  whileHover={{ y: -6 }}
+                >
                   <h3 className="font-serif text-xl">{title}</h3>
                   <p className="mt-2 text-sm text-muted leading-relaxed">{desc}</p>
-                </div>
+                </motion.div>
               ))}
-            </Reveal>
+            </motion.div>
           </div>
         </div>
       </div>

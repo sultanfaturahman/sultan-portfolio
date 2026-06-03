@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
 const navItems = [
   { label: 'About', id: 'about' },
@@ -58,7 +59,10 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -90 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
         scrolled ? 'bg-paper/90 backdrop-blur-sm border-b border-line' : 'bg-transparent border-b border-transparent'
       }`}
@@ -130,7 +134,7 @@ const Header: React.FC = () => {
           ))}
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

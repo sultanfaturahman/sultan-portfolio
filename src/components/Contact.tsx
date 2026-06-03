@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Reveal from './Reveal';
+import { motion } from 'framer-motion';
+import { Reveal, TextReveal, Magnetic, ArrowLink } from './motion';
 
 const EMAIL = 'sultannfaturahman@gmail.com';
 
@@ -32,13 +33,23 @@ const Contact: React.FC = () => {
             </Reveal>
           </div>
           <div className="lg:col-span-9">
-            <Reveal>
-              <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[0.95] text-balance">
-                Let&rsquo;s build
-                <br />
-                something <span className="italic text-accent">good</span>.
-              </h2>
-            </Reveal>
+            <h2 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[0.95]">
+              <span className="block">
+                <TextReveal text="Let's build" />
+              </span>
+              <span className="block">
+                <TextReveal text="something" delay={0.12} />{' '}
+                <motion.span
+                  className="italic text-accent"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                >
+                  good.
+                </motion.span>
+              </span>
+            </h2>
           </div>
         </div>
 
@@ -74,13 +85,9 @@ const Contact: React.FC = () => {
               </div>
             </dl>
 
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-              <a href="https://github.com/sultanfaturahman" target="_blank" rel="noopener noreferrer" className="link-underline">
-                GitHub &nearr;
-              </a>
-              <a href="https://linkedin.com/in/sultan-faturahman" target="_blank" rel="noopener noreferrer" className="link-underline">
-                LinkedIn &nearr;
-              </a>
+            <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
+              <ArrowLink href="https://github.com/sultanfaturahman">GitHub</ArrowLink>
+              <ArrowLink href="https://linkedin.com/in/sultan-faturahman">LinkedIn</ArrowLink>
             </div>
           </Reveal>
 
@@ -129,7 +136,9 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-6">
-                <button type="submit" className="btn-ink">Send message</button>
+                <Magnetic strength={0.5}>
+                  <button type="submit" className="btn-ink">Send message</button>
+                </Magnetic>
                 <span aria-live="polite" className="text-sm text-accent">
                   {sent ? 'Thanks — opening your mail client.' : ''}
                 </span>
