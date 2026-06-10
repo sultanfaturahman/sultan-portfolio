@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
           >
             <p className="text-lg sm:text-xl leading-relaxed text-ink-soft text-balance">
-              I&rsquo;m Muhamad Sultan Faturahman — a full-stack web developer focused on
+              I&rsquo;m Muhamad Sultan Faturahman a full-stack web developer focused on
               clean, fast, and accessible interfaces.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -123,7 +123,7 @@ const Hero: React.FC = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.2 }}
       >
-        <Marquee duration={28}>
+        <Marquee speed={50}>
           {['Full-Stack Developer', 'React', 'TypeScript', 'Laravel', 'UI / UX', 'Tailwind CSS', 'Supabase'].map(
             (t, i) => (
               <span key={i} className="flex items-center font-serif text-2xl sm:text-3xl px-6 text-ink-soft">

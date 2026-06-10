@@ -7,9 +7,9 @@ import {
   useMotionValue,
   useReducedMotion,
   useInView,
-  useAnimationFrame,
   animate,
 } from 'framer-motion';
+import ReactFastMarquee from 'react-fast-marquee';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -121,62 +121,25 @@ export const Magnetic: React.FC<{
 };
 
 /* ------------------------------------------------------------------ */
-/* Infinite marquee strip (children rendered twice for a seamless loop)*/
+/* Infinite marquee strip — powered by react-fast-marquee              */
 /* ------------------------------------------------------------------ */
 export const Marquee: React.FC<{
   children: React.ReactNode;
-  duration?: number;
+  speed?: number;
   reverse?: boolean;
   className?: string;
   pauseOnHover?: boolean;
-}> = ({ children, duration = 30, reverse = false, className = '', pauseOnHover = true }) => {
-  const reduce = useReducedMotion();
-  const innerRef = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const half = useRef(0);
-  const paused = useRef(false);
-
-  // Measure the width of a single copy (the track renders two copies).
-  useEffect(() => {
-    const el = innerRef.current;
-    if (!el) return;
-    const measure = () => {
-      half.current = el.scrollWidth / 2;
-    };
-    measure();
-    const ro = new ResizeObserver(measure);
-    ro.observe(el);
-    // Re-measure once fonts are ready (serif metrics change width).
-    if ((document as any).fonts?.ready) {
-      (document as any).fonts.ready.then(measure).catch(() => {});
-    }
-    return () => ro.disconnect();
-  }, [children]);
-
-  useAnimationFrame((_, delta) => {
-    if (reduce || paused.current || half.current === 0) return;
-    const dir = reverse ? 1 : -1;
-    const pxPerMs = half.current / (duration * 1000);
-    let next = x.get() + dir * pxPerMs * delta;
-    // Wrap seamlessly within [-half, 0]
-    if (next <= -half.current) next += half.current;
-    else if (next >= 0) next -= half.current;
-    x.set(next);
-  });
-
+}> = ({ children, speed = 50, reverse = false, className = '', pauseOnHover = true }) => {
   return (
-    <div
-      className={`overflow-hidden ${className}`}
-      onMouseEnter={() => pauseOnHover && (paused.current = true)}
-      onMouseLeave={() => pauseOnHover && (paused.current = false)}
+    <ReactFastMarquee
+      speed={speed}
+      direction={reverse ? 'right' : 'left'}
+      pauseOnHover={pauseOnHover}
+      gradient={false}
+      className={className}
     >
-      <motion.div ref={innerRef} className="flex w-max will-change-transform" style={{ x }}>
-        <div className="flex shrink-0">{children}</div>
-        <div className="flex shrink-0" aria-hidden>
-          {children}
-        </div>
-      </motion.div>
-    </div>
+      {children}
+    </ReactFastMarquee>
   );
 };
 

@@ -130,7 +130,7 @@ const Experience: React.FC = () => {
                 <h3 className="font-serif text-2xl sm:text-3xl">Universitas Sultan Ageng Tirtayasa</h3>
                 <p className="mt-1 text-accent font-sans text-sm">Computer Science</p>
                 <p className="mt-5 text-ink-soft leading-relaxed">
-                  Graduated with a focus on web development and software engineering — the
+                  Graduated with a focus on web development and software engineering the
                   foundation for everything I build today.
                 </p>
               </div>

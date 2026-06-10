@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
     <footer className="bg-ink text-paper relative z-10 overflow-hidden">
       {/* Marquee banner */}
       <a href="mailto:sultannfaturahman@gmail.com" className="block border-b border-paper/15 py-8 group">
-        <Marquee duration={22}>
+        <Marquee speed={60}>
           {Array.from({ length: 4 }).map((_, i) => (
             <span
               key={i}
