@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
-import { TextReveal, Magnetic, Marquee, Counter } from './motion';
+import { TextReveal, Magnetic, Marquee } from './motion';
 
 const CV_URL =
   'https://drive.google.com/file/d/1ap30E5tFEiWCGaB8_6f6A1HLMd8WsBjt/view?usp=drive_link';
@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
         >
           <span className="eyebrow">Portfolio © {new Date().getFullYear()}</span>
-          <span className="eyebrow hidden sm:inline">Jakarta, Indonesia</span>
+          <span className="eyebrow hidden sm:inline">Informatics graduate · Jakarta</span>
           <span className="eyebrow flex items-center gap-2">
             <motion.span
               className="inline-block w-1.5 h-1.5 rounded-full bg-accent"
@@ -44,13 +44,13 @@ const Hero: React.FC = () => {
         {/* Display headline with masked word reveal — only this fades/parallaxes on scroll */}
         <motion.h1 style={{ y: yHead, opacity, scale }} className="text-display font-serif font-medium mt-10 lg:mt-14 gpu origin-left">
           <span className="block">
-            <TextReveal text="Building web" delay={0.15} />
+            <TextReveal text="Building dependable" delay={0.15} />
           </span>
           <span className="block">
-            <TextReveal text="experiences that feel" delay={0.3} />
+            <TextReveal text="web systems for" delay={0.3} />
           </span>
           <span className="block italic">
-            <TextReveal text="effortless" delay={0.5} />
+            <TextReveal text="real operations" delay={0.5} />
             <motion.span
               className="text-accent not-italic"
               initial={{ opacity: 0 }}
@@ -71,8 +71,9 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
           >
             <p className="text-lg sm:text-xl leading-relaxed text-ink-soft text-balance">
-              I&rsquo;m Muhamad Sultan Faturahman a full-stack web developer focused on
-              clean, fast, and accessible interfaces.
+              I&rsquo;m Muhamad Sultan Faturahman, an Informatics graduate with hands-on
+              experience building, maintaining, and improving production web applications
+              across membership, e-commerce, and MSME operations.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Magnetic strength={0.5}>
@@ -93,24 +94,20 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: EASE, delay: 1.05 }}
           >
             <div>
-              <dt className="eyebrow">Experience</dt>
-              <dd className="font-serif text-4xl mt-2">
-                <Counter to={3} suffix="+ yrs" />
-              </dd>
+              <dt className="eyebrow">Education</dt>
+              <dd className="font-serif text-2xl mt-2 leading-snug">B.Informatics</dd>
             </div>
             <div>
-              <dt className="eyebrow">Projects shipped</dt>
-              <dd className="font-serif text-4xl mt-2">
-                <Counter to={20} suffix="+" />
-              </dd>
+              <dt className="eyebrow">GPA</dt>
+              <dd className="font-serif text-2xl mt-2 leading-snug">3.78 / 4.00</dd>
             </div>
             <div>
               <dt className="eyebrow">Focus</dt>
-              <dd className="font-serif text-2xl mt-2 leading-snug">React &amp; Laravel</dd>
+              <dd className="font-serif text-2xl mt-2 leading-snug">React &amp; Backend</dd>
             </div>
             <div>
-              <dt className="eyebrow">Based in</dt>
-              <dd className="font-serif text-2xl mt-2 leading-snug">Indonesia</dd>
+              <dt className="eyebrow">Strength</dt>
+              <dd className="font-serif text-2xl mt-2 leading-snug">Existing systems</dd>
             </div>
           </motion.dl>
         </div>
@@ -124,7 +121,17 @@ const Hero: React.FC = () => {
         transition={{ duration: 0.8, delay: 1.2 }}
       >
         <Marquee speed={50}>
-          {['Full-Stack Developer', 'React', 'TypeScript', 'Laravel', 'UI / UX', 'Tailwind CSS', 'Supabase'].map(
+          {[
+            'Full-Stack Developer',
+            'React',
+            'TypeScript',
+            'Node.js',
+            'Express.js',
+            'REST APIs',
+            'Git & GitHub',
+            'Debugging',
+            'Documentation',
+          ].map(
             (t, i) => (
               <span key={i} className="flex items-center font-serif text-2xl sm:text-3xl px-6 text-ink-soft">
                 {t}

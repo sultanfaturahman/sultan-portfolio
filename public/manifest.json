@@ -1,6 +1,6 @@
 {
   "short_name": "Sultan Portfolio",
-  "name": "Muhamad Sultan Faturahman - Portfolio",
+  "name": "Muhamad Sultan Faturahman | Full-Stack Web Developer",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#0ea5e9",
-  "background_color": "#ffffff"
+  "theme_color": "#F4F2EC",
+  "background_color": "#F4F2EC"
 }

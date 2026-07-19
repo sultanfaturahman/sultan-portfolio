@@ -11,7 +11,7 @@ module.exports = {
         'paper-dim': '#ECEAE2',
         ink: '#16140F',
         'ink-soft': '#3A352C',
-        muted: '#6E685C',
+        muted: '#5F5A50',
         line: '#D8D3C6',
         accent: '#C8442A',
         'accent-dark': '#A8341E',

@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# Muhamad Sultan Faturahman — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio for Muhamad Sultan Faturahman, an Informatics graduate and full-stack web developer focused on React, backend services, API integration, databases, debugging, and technical documentation.
 
-## Available Scripts
+## What this portfolio highlights
 
-In the project directory, you can run:
+- Experience maintaining and extending existing production applications.
+- Frontend and backend work across membership, e-commerce, and MSME operations.
+- Business workflows including authentication, payments, validation, inventory, transactions, and reporting.
+- Selected case studies with explicit scope, technical contributions, and public evidence.
+- Responsive, accessible presentation with reduced-motion support.
 
-### `npm start`
+## Featured work
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Teelite Club** — React, Vite, TypeScript, Tailwind CSS, and Supabase storefront.
+- **SiNaik Finance** — React and TypeScript financial management product using Supabase Auth, PostgreSQL, Edge Functions, and TanStack Query.
+- **The Blue Economist** — React membership platform with Midtrans payment and digital certification workflows.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech stack
 
-### `npm test`
+- React 19 and TypeScript
+- Create React App
+- Tailwind CSS
+- Framer Motion
+- React Testing Library
+- Netlify
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Run locally
 
-### `npm run build`
+```bash
+npm install
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The development site runs at [http://localhost:3000](http://localhost:3000).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Quality checks
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm test -- --watchAll=false
+npm run build
+```
 
-### `npm run eject`
+## Project structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```text
+src/
+├── components/     # Page sections and shared motion primitives
+├── App.tsx         # Page composition
+├── App.test.tsx    # Core content smoke tests
+└── index.css       # Tailwind layers and shared design tokens
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+public/
+├── images/         # Profile, project, and social preview assets
+├── index.html      # Metadata and structured data
+└── manifest.json   # Installable web app metadata
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Deployment
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The project includes `netlify.toml` for Netlify builds, SPA redirects, caching, and security headers. The production build is generated in `build/`.
 
-## Learn More
+## Links
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Live portfolio](https://sultan-portfolio.netlify.app/)
+- [GitHub](https://github.com/sultanfaturahman)
+- [LinkedIn](https://www.linkedin.com/in/sultanfaturahman/)

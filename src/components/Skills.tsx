@@ -1,82 +1,76 @@
 import React from 'react';
 import { Reveal, TextReveal } from './motion';
 
-interface Skill {
-  name: string;
-  level: string;
-  years: string;
+interface SkillCategory {
+  title: string;
+  skills: string[];
+  evidence: string;
 }
 
-const categories: { title: string; skills: Skill[] }[] = [
+const categories: SkillCategory[] = [
   {
     title: 'Frontend',
     skills: [
-      { name: 'React', level: 'Expert', years: '3+' },
-      { name: 'JavaScript (ES6+)', level: 'Expert', years: '4+' },
-      { name: 'TypeScript', level: 'Advanced', years: '2+' },
-      { name: 'HTML5 & CSS3', level: 'Expert', years: '4+' },
-      { name: 'Tailwind CSS', level: 'Advanced', years: '2+' },
-      { name: 'Bootstrap', level: 'Advanced', years: '3+' },
+      'HTML5',
+      'CSS3',
+      'JavaScript (ES6+)',
+      'TypeScript',
+      'React.js',
+      'Vite',
+      'Tailwind CSS',
     ],
+    evidence: 'Applied in Teelite Club, SiNaik, and The Blue Economist.',
   },
   {
-    title: 'Backend',
+    title: 'Backend & APIs',
     skills: [
-      { name: 'PHP', level: 'Advanced', years: '3+' },
-      { name: 'Laravel', level: 'Advanced', years: '2+' },
-      { name: 'Node.js', level: 'Intermediate', years: '1+' },
-      { name: 'Express.js', level: 'Intermediate', years: '1+' },
-      { name: 'REST API Design', level: 'Advanced', years: '2+' },
-      { name: 'GraphQL', level: 'Beginner', years: '<1' },
+      'Node.js',
+      'Express.js',
+      'PHP',
+      'CodeIgniter',
+      'Laravel',
+      'REST API Development',
+      'API Integration',
+      'Authentication & Authorization',
+      'Data Validation',
     ],
+    evidence: 'Used for application services, authentication, validation, and business workflows.',
   },
   {
-    title: 'Database & Cloud',
-    skills: [
-      { name: 'MySQL', level: 'Advanced', years: '3+' },
-      { name: 'PostgreSQL', level: 'Intermediate', years: '1+' },
-      { name: 'Supabase', level: 'Intermediate', years: '1+' },
-      { name: 'Digital Ocean', level: 'Intermediate', years: '2+' },
-      { name: 'AWS (Basic)', level: 'Beginner', years: '<1' },
-      { name: 'MongoDB', level: 'Beginner', years: '<1' },
-    ],
+    title: 'Databases',
+    skills: ['MongoDB', 'PostgreSQL', 'MySQL', 'Supabase'],
+    evidence: 'Supabase-backed workflows in SiNaik and Teelite Club; MySQL for e-KTA services.',
   },
   {
-    title: 'Tooling',
+    title: 'Development Practices',
     skills: [
-      { name: 'Git & GitHub', level: 'Advanced', years: '3+' },
-      { name: 'Vite', level: 'Advanced', years: '2+' },
-      { name: 'Webpack', level: 'Intermediate', years: '1+' },
-      { name: 'Docker', level: 'Beginner', years: '<1' },
-      { name: 'VS Code', level: 'Expert', years: '4+' },
-      { name: 'Figma', level: 'Intermediate', years: '2+' },
+      'Git',
+      'GitHub',
+      'Branching',
+      'Pull Requests',
+      'Debugging',
+      'Bug Fixing',
+      'Code Review',
+      'Testing & QA',
+      'Technical Documentation',
+      'Agile Workflow',
     ],
+    evidence: 'Applied while maintaining existing systems, testing with users, and preparing handovers.',
   },
   {
-    title: 'Standards & UX',
+    title: 'Cloud & Integrations',
     skills: [
-      { name: 'Responsive Design', level: 'Expert', years: '4+' },
-      { name: 'Mobile-First', level: 'Expert', years: '3+' },
-      { name: 'Web Performance', level: 'Advanced', years: '2+' },
-      { name: 'Accessibility', level: 'Intermediate', years: '1+' },
-      { name: 'UI/UX Principles', level: 'Advanced', years: '2+' },
-      { name: 'Design Systems', level: 'Intermediate', years: '1+' },
+      'DigitalOcean',
+      'AWS',
+      'Docker',
+      'Midtrans',
+      'TanStack Query',
+      'Supabase Edge Functions',
+      'Figma',
     ],
-  },
-  {
-    title: 'Practice',
-    skills: [
-      { name: 'Payment Integration', level: 'Advanced', years: '2+' },
-      { name: 'E-commerce', level: 'Advanced', years: '2+' },
-      { name: 'Code Review & Testing', level: 'Intermediate', years: '2+' },
-      { name: 'Agile Workflow', level: 'Intermediate', years: '2+' },
-      { name: 'Client Communication', level: 'Advanced', years: '3+' },
-      { name: 'Documentation', level: 'Advanced', years: '3+' },
-    ],
+    evidence: 'Used for cloud deployment, payment flows, async data, and server-side functions.',
   },
 ];
-
-const exploring = ['Next.js', 'Vue 3', 'Python & Django', 'Cloud Architecture', 'DevOps', 'AI Integration'];
 
 const Skills: React.FC = () => {
   return (
@@ -85,7 +79,7 @@ const Skills: React.FC = () => {
         <div className="rule pt-6 grid lg:grid-cols-12 gap-8 lg:gap-12">
           <div className="lg:col-span-3">
             <Reveal className="flex items-baseline gap-3">
-              <span className="section-index">04</span>
+              <span className="section-index">02</span>
               <span className="eyebrow">Capabilities</span>
             </Reveal>
           </div>
@@ -101,31 +95,21 @@ const Skills: React.FC = () => {
             <Reveal key={cat.title}>
               <h3 className="font-serif text-xl border-b border-ink pb-3">{cat.title}</h3>
               <ul>
-                {cat.skills.map((s) => (
+                {cat.skills.map((skill) => (
                   <li
-                    key={s.name}
-                    className="group/skill flex items-baseline justify-between gap-4 py-2.5 border-b border-line transition-[padding] duration-300 hover:pl-2"
+                    key={skill}
+                    className="group/skill py-2.5 border-b border-line transition-[padding] duration-300 hover:pl-2"
                   >
-                    <span className="text-ink-soft transition-colors duration-300 group-hover/skill:text-accent">{s.name}</span>
-                    <span className="font-mono text-[0.7rem] uppercase tracking-wide text-muted whitespace-nowrap">
-                      {s.level} · {s.years}
-                    </span>
+                    <span className="text-ink-soft transition-colors duration-300 group-hover/skill:text-accent">{skill}</span>
                   </li>
                 ))}
               </ul>
+              <p className="mt-4 text-sm text-muted leading-relaxed">
+                <span className="font-medium text-ink-soft">Evidence:</span> {cat.evidence}
+              </p>
             </Reveal>
           ))}
         </div>
-
-        {/* Currently exploring */}
-        <Reveal className="mt-16 rule pt-8 flex flex-col sm:flex-row sm:items-baseline gap-4">
-          <span className="eyebrow shrink-0">Currently exploring</span>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 font-serif text-lg">
-            {exploring.map((e) => (
-              <li key={e} className="text-ink-soft">{e}</li>
-            ))}
-          </ul>
-        </Reveal>
       </div>
     </section>
   );

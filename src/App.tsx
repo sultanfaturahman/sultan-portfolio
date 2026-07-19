@@ -24,9 +24,9 @@ function App() {
       <main id="main">
         <Hero />
         <About />
-        <Projects />
-        <Experience />
         <Skills />
+        <Experience />
+        <Projects />
         <Contact />
       </main>
       <Footer />

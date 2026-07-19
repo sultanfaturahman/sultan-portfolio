@@ -3,17 +3,17 @@ import { motion } from 'framer-motion';
 import { Reveal, TextReveal } from './motion';
 
 const meta = [
-  { label: 'Education', value: 'Universitas Sultan Ageng Tirtayasa' },
-  { label: 'Discipline', value: 'Computer Science' },
-  { label: 'Location', value: 'Indonesia' },
-  { label: 'Status', value: 'Open to opportunities' },
+  { label: 'Education', value: 'B.Informatics, Universitas Sultan Ageng Tirtayasa' },
+  { label: 'Graduated', value: 'January 2026' },
+  { label: 'GPA', value: '3.78 / 4.00' },
+  { label: 'Location', value: 'Jakarta, Indonesia' },
 ];
 
 const qualities = [
-  ['Problem solver', 'Creative solutions for complex challenges.'],
-  ['Team player', 'Collaborative, communicative approach.'],
-  ['Quality focused', 'Attention to detail and best practices.'],
-  ['Always learning', 'Continually refining the craft.'],
+  ['Existing codebases', 'Maintaining and extending systems already used in production.'],
+  ['Business workflows', 'Membership, payments, validation, inventory, and reporting.'],
+  ['End-to-end delivery', 'Frontend, backend services, databases, APIs, and deployment.'],
+  ['Clear handover', 'Setup, maintenance, troubleshooting, and operational documentation.'],
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -43,20 +43,20 @@ const About: React.FC = () => {
           {/* ── Right column: heading + bio + meta ── */}
           <div className="lg:col-span-8 space-y-8">
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl leading-tight">
-              <TextReveal text="A web developer focused on scalable systems and the experience of the people who use them." />
+              <TextReveal text="I work beyond the happy path: business rules, failures, maintenance, and handover." />
             </h2>
 
             <Reveal delay={0.1} className="space-y-4 text-ink-soft leading-relaxed">
               <p>
-                My journey in web development began at Universitas Sultan Ageng
-                Tirtayasa, where I built a strong foundation across both frontend and
-                backend. Since then I&rsquo;ve shipped e-commerce platforms, company
-                profiles, and membership systems.
+                Across freelance work, product development, and two MSIB roles, I have
+                contributed to web applications for membership services, payments,
+                e-commerce operations, and financial management for MSMEs.
               </p>
               <p>
-                I care about writing clean, maintainable code and pairing technical
-                rigour with a sense for design so the result is fast, accessible,
-                and genuinely pleasant to use.
+                I work across React and TypeScript interfaces, backend services, APIs,
+                SQL and NoSQL data, debugging, validation, deployment, and technical
+                documentation—with an emphasis on maintainable features that support
+                real operational needs.
               </p>
             </Reveal>
 

@@ -80,8 +80,8 @@ const Contact: React.FC = () => {
                 <dd className="font-serif text-lg">Jakarta, Indonesia</dd>
               </div>
               <div className="flex justify-between gap-6 py-3">
-                <dt className="eyebrow pt-1">Response</dt>
-                <dd className="font-serif text-lg">Within 24 hours</dd>
+                <dt className="eyebrow pt-1">Status</dt>
+                <dd className="font-serif text-lg text-right">Open to web development roles</dd>
               </div>
             </dl>
 

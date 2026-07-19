@@ -34,6 +34,11 @@
     text-decoration: none;
   }
 
+  :where(a, button, input, textarea):focus-visible {
+    outline: 2px solid #C8442A;
+    outline-offset: 4px;
+  }
+
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -61,6 +66,13 @@
 
   .section {
     @apply py-20 sm:py-28 lg:py-36;
+  }
+
+  @supports (content-visibility: auto) {
+    .section {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 900px;
+    }
   }
 
   /* Hairline rule used as section dividers */

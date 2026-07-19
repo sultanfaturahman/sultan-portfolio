@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 
 const navItems = [
   { label: 'About', id: 'about' },
-  { label: 'Work', id: 'projects' },
-  { label: 'Experience', id: 'experience' },
   { label: 'Skills', id: 'skills' },
+  { label: 'Experience', id: 'experience' },
+  { label: 'Work', id: 'projects' },
   { label: 'Contact', id: 'contact' },
 ];
 
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
           {/* Wordmark */}
           <button onClick={() => goTo('home')} className="text-left leading-none group" aria-label="Back to top">
             <span className="block font-serif text-lg tracking-tight">Sultan Faturahman</span>
-            <span className="block eyebrow mt-1">Web Developer — ID</span>
+            <span className="block eyebrow mt-1">Full-Stack Web Developer</span>
           </button>
 
           {/* Desktop nav */}
