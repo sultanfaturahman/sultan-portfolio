@@ -95,7 +95,7 @@ const Hero: React.FC = () => {
           >
             <div>
               <dt className="eyebrow">Experience</dt>
-              <dd className="font-serif text-2xl mt-2 leading-snug">3+ years</dd>
+              <dd className="font-serif text-2xl mt-2 leading-snug">2+ years</dd>
             </div>
             <div>
               <dt className="eyebrow">GPA</dt>

@@ -16,6 +16,7 @@ interface Project {
   github?: string;
   githubLabel?: string;
   image: string;
+  mobileImage?: string;
 }
 
 const projects: Project[] = [
@@ -36,7 +37,8 @@ const projects: Project[] = [
     scopeNote: 'Payment callbacks and admin stock/order flows remain documented as work in progress.',
     website: 'https://teeliteclub.com',
     github: 'https://github.com/sultanfaturahman/teeliteclub',
-    image: '/images/projects/teeliteclub.jpg',
+    image: '/images/projects/teelite-product-desktop.png',
+    mobileImage: '/images/projects/teelite-home-mobile.png',
   },
   {
     title: 'SiNaik Finance',
@@ -88,8 +90,62 @@ const hostOf = (url?: string) => {
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+const BrowserChrome: React.FC<{ website?: string }> = ({ website }) => (
+  <div className="flex h-10 items-center gap-2 border-b border-line bg-paper-dim px-4">
+    <span className="flex gap-1.5" aria-hidden="true">
+      <span className="h-3 w-3 rounded-full bg-[#E26D5A]" />
+      <span className="h-3 w-3 rounded-full bg-[#E8B34B]" />
+      <span className="h-3 w-3 rounded-full bg-[#7FB069]" />
+    </span>
+    <span className="mx-auto max-w-[70%] truncate rounded border border-line bg-paper px-3 py-1 font-mono text-[0.7rem] text-muted">
+      {hostOf(website) || 'github.com'}
+    </span>
+  </div>
+);
+
 const BrowserFrame: React.FC<{ project: Project }> = ({ project }) => {
   const href = project.website ?? project.github ?? '#';
+
+  if (project.mobileImage) {
+    return (
+      <motion.div
+        role="group"
+        aria-label={`${project.title} browser preview with responsive device frames`}
+        className="overflow-hidden rounded-xl border border-line bg-paper shadow-2xl shadow-ink/10"
+        initial={{ clipPath: 'inset(0 0 100% 0)' }}
+        whileInView={{ clipPath: 'inset(0 0 0% 0)' }}
+        viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+        transition={{ duration: 1, ease: EASE }}
+      >
+        <BrowserChrome website={project.website} />
+
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${project.title}`}
+          className="flex items-end justify-center gap-3 p-4 sm:gap-5 sm:p-7"
+        >
+          <span className="min-w-0 flex-[3.5]">
+            <img
+              src={project.image}
+              alt={`${project.title} desktop product page in a laptop frame`}
+              loading="lazy"
+              className="media-grayscale block h-auto w-full"
+            />
+          </span>
+          <span className="min-w-0 flex-1">
+            <img
+              src={project.mobileImage}
+              alt={`${project.title} mobile storefront in a phone frame`}
+              loading="lazy"
+              className="media-grayscale block h-auto w-full"
+            />
+          </span>
+        </a>
+      </motion.div>
+    );
+  }
 
   return (
     <motion.div
@@ -101,17 +157,7 @@ const BrowserFrame: React.FC<{ project: Project }> = ({ project }) => {
       viewport={{ once: true, margin: '0px 0px -10% 0px' }}
       transition={{ duration: 1, ease: EASE }}
     >
-      {/* Fake browser chrome */}
-      <div className="flex items-center gap-2 h-10 px-4 border-b border-line bg-paper-dim">
-        <span className="flex gap-1.5">
-          <span className="w-3 h-3 rounded-full bg-[#E26D5A]" />
-          <span className="w-3 h-3 rounded-full bg-[#E8B34B]" />
-          <span className="w-3 h-3 rounded-full bg-[#7FB069]" />
-        </span>
-        <span className="mx-auto px-3 py-1 rounded bg-paper border border-line font-mono text-[0.7rem] text-muted truncate max-w-[70%]">
-          {hostOf(project.website) || 'github.com'}
-        </span>
-      </div>
+      <BrowserChrome website={project.website} />
 
       {/* Full screenshot — never cropped */}
       <a
