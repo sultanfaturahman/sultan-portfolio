@@ -6,6 +6,10 @@ const navItems = [
   { label: 'Skills', id: 'skills' },
   { label: 'Experience', id: 'experience' },
   { label: 'Work', id: 'projects' },
+];
+
+const mobileNavItems = [
+  ...navItems,
   { label: 'Contact', id: 'contact' },
 ];
 
@@ -23,7 +27,7 @@ const Header: React.FC = () => {
       requestAnimationFrame(() => {
         setScrolled(window.scrollY > 24);
 
-        const ids = ['home', ...navItems.map((n) => n.id)];
+        const ids = ['home', ...mobileNavItems.map((n) => n.id)];
         const pos = window.scrollY + 120;
         for (let i = ids.length - 1; i >= 0; i--) {
           const el = document.getElementById(ids[i]);
@@ -52,8 +56,11 @@ const Header: React.FC = () => {
   const goTo = useCallback((id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 72;
-      window.scrollTo({ top, behavior: 'smooth' });
+      document.documentElement.classList.add('section-navigation-ready');
+      requestAnimationFrame(() => {
+        const top = el.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
     }
     setMenuOpen(false);
   }, []);
@@ -68,16 +75,16 @@ const Header: React.FC = () => {
       }`}
     >
       <div className="container-page">
-        <div className="flex h-20 items-center justify-between">
+        <div className="grid h-20 grid-cols-[1fr_auto_1fr] items-center">
           {/* Wordmark */}
-          <button onClick={() => goTo('home')} className="text-left leading-none group" aria-label="Back to top">
+          <button onClick={() => goTo('home')} className="justify-self-start text-left leading-none group" aria-label="Back to top">
             <span className="block font-serif text-lg tracking-tight">Sultan Faturahman</span>
             <span className="block eyebrow mt-1">Full-Stack Web Developer</span>
           </button>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item, i) => (
+          <nav className="hidden md:flex items-center justify-self-center gap-8">
+            {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => goTo(item.id)}
@@ -85,17 +92,21 @@ const Header: React.FC = () => {
                   active === item.id ? 'text-accent' : 'text-ink-soft hover:text-ink'
                 }`}
               >
-                <span className="font-mono text-[0.65rem] text-muted mr-1.5">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
                 <span className="link-retract">{item.label}</span>
               </button>
             ))}
           </nav>
 
+          <button
+            onClick={() => goTo('contact')}
+            className="hidden md:inline-flex justify-self-end items-center justify-center rounded-full bg-accent px-6 py-2.5 font-sans text-sm tracking-wide text-paper transition-[background-color,transform] duration-300 hover:bg-accent-dark active:scale-[0.98]"
+          >
+            Get in touch
+          </button>
+
           {/* Mobile toggle */}
           <button
-            className="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
+            className="md:hidden col-start-3 justify-self-end flex flex-col gap-1.5 p-2 -mr-2"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
@@ -122,13 +133,12 @@ const Header: React.FC = () => {
         }`}
       >
         <div className="container-page flex h-full flex-col justify-center gap-2 pt-20">
-          {navItems.map((item, i) => (
+          {mobileNavItems.map((item) => (
             <button
               key={item.id}
               onClick={() => goTo(item.id)}
-              className="flex items-baseline gap-4 py-3 text-left border-b border-line"
+              className="py-3 text-left border-b border-line"
             >
-              <span className="font-mono text-xs text-accent">{String(i + 1).padStart(2, '0')}</span>
               <span className="font-serif text-4xl">{item.label}</span>
             </button>
           ))}

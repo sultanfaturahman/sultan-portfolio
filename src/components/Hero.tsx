@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion
 import { TextReveal, Magnetic, Marquee } from './motion';
 
 const CV_URL =
-  'https://drive.google.com/file/d/1ap30E5tFEiWCGaB8_6f6A1HLMd8WsBjt/view?usp=drive_link';
+  'https://drive.google.com/file/d/18j4UByWgwc8Aqaec8SONWT5_F-knZavJ/view?usp=sharing';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -20,7 +20,7 @@ const Hero: React.FC = () => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 0.96]);
 
   return (
-    <section ref={ref} id="home" className="relative min-h-screen flex flex-col justify-between pt-28 pb-0">
+    <section ref={ref} id="home" className="relative min-h-screen flex flex-col justify-between pt-24 pb-0">
       <div className="container-page w-full">
         {/* Meta row */}
         <motion.div
@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
         >
           <span className="eyebrow">Portfolio © {new Date().getFullYear()}</span>
-          <span className="eyebrow hidden sm:inline">Informatics graduate · Jakarta</span>
+          <span className="eyebrow hidden sm:inline">Indonesia</span>
           <span className="eyebrow flex items-center gap-2">
             <motion.span
               className="inline-block w-1.5 h-1.5 rounded-full bg-accent"
@@ -71,8 +71,8 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
           >
             <p className="text-lg sm:text-xl leading-relaxed text-ink-soft text-balance">
-              I&rsquo;m Muhamad Sultan Faturahman, an Informatics graduate with hands-on
-              experience building, maintaining, and improving production web applications
+              I&rsquo;m Muhamad Sultan Faturahman, a full-stack web developer with hands-on
+              experience building, maintaining, and improving production applications
               across membership, e-commerce, and MSME operations.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -94,8 +94,8 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: EASE, delay: 1.05 }}
           >
             <div>
-              <dt className="eyebrow">Education</dt>
-              <dd className="font-serif text-2xl mt-2 leading-snug">B.Informatics</dd>
+              <dt className="eyebrow">Experience</dt>
+              <dd className="font-serif text-2xl mt-2 leading-snug">3+ years</dd>
             </div>
             <div>
               <dt className="eyebrow">GPA</dt>
@@ -103,11 +103,11 @@ const Hero: React.FC = () => {
             </div>
             <div>
               <dt className="eyebrow">Focus</dt>
-              <dd className="font-serif text-2xl mt-2 leading-snug">React &amp; Backend</dd>
+              <dd className="font-serif text-2xl mt-2 leading-snug">Web Development</dd>
             </div>
             <div>
               <dt className="eyebrow">Strength</dt>
-              <dd className="font-serif text-2xl mt-2 leading-snug">Existing systems</dd>
+              <dd className="font-serif text-2xl mt-2 leading-snug">System Design</dd>
             </div>
           </motion.dl>
         </div>
@@ -127,13 +127,13 @@ const Hero: React.FC = () => {
             'TypeScript',
             'Node.js',
             'Express.js',
-            'REST APIs',
+            'REST API',
             'Git & GitHub',
             'Debugging',
             'Documentation',
           ].map(
-            (t, i) => (
-              <span key={i} className="flex items-center font-serif text-2xl sm:text-3xl px-6 text-ink-soft">
+            (t) => (
+              <span key={t} className="flex items-center font-serif text-2xl sm:text-3xl px-6 text-ink-soft">
                 {t}
                 <span className="text-accent mx-6">✦</span>
               </span>

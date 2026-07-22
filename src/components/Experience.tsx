@@ -49,7 +49,7 @@ const roles: Role[] = [
     year: '2024',
     company: 'Maritim Muda Nusantara',
     position: 'Website Developer & Administrator',
-    context: 'Batch 6 — MSIB · On-site',
+    context: 'Batch 6 MSIB · On-site',
     description:
       'Maintained and enhanced an existing React and Tailwind CSS membership platform, including Midtrans payment and digital certification workflows.',
     highlights: [
@@ -64,7 +64,7 @@ const roles: Role[] = [
     year: '2023',
     company: 'Maritim Muda Nusantara',
     position: 'Website Developer',
-    context: 'Batch 5 — MSIB · On-site',
+    context: 'Batch 5 MSIB · On-site',
     description:
       'Developed and administered e-KTA registration, validation, and member database workflows across existing organization websites.',
     highlights: [

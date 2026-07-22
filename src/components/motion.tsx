@@ -197,7 +197,7 @@ export const Parallax: React.FC<{
   const sy = useSpring(y, { stiffness: 120, damping: 30, mass: 0.4 });
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={`relative ${className}`}>
       <motion.div style={reduce ? undefined : { y: sy }}>{children}</motion.div>
     </div>
   );

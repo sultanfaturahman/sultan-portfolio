@@ -16,8 +16,6 @@ interface Project {
   github?: string;
   githubLabel?: string;
   image: string;
-  mobileImage?: string;
-  presentation?: 'browser' | 'devices';
 }
 
 const projects: Project[] = [
@@ -57,8 +55,6 @@ const projects: Project[] = [
     website: 'https://sinaik-finance-app.vercel.app',
     github: 'https://github.com/sultanfaturahman/Sinaik-Finance-App',
     image: '/images/projects/sinaik-desktop.webp',
-    mobileImage: '/images/projects/sinaik-mobile.webp',
-    presentation: 'devices',
   },
   {
     title: 'The Blue Economist',
@@ -95,37 +91,10 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const BrowserFrame: React.FC<{ project: Project }> = ({ project }) => {
   const href = project.website ?? project.github ?? '#';
 
-  if (project.presentation === 'devices' && project.mobileImage) {
-    return (
-      <motion.a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Open ${project.title}`}
-        className="group/media relative block overflow-hidden rounded-xl border border-line bg-[#111] p-3 shadow-2xl shadow-ink/10 sm:p-5"
-        initial={{ clipPath: 'inset(0 0 100% 0)' }}
-        whileInView={{ clipPath: 'inset(0 0 0% 0)' }}
-        viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-        transition={{ duration: 1, ease: EASE }}
-      >
-        <img
-          src={project.image}
-          alt={`${project.title} dashboard displayed on a MacBook Air`}
-          loading="lazy"
-          className="block h-auto w-full transition-transform duration-700 group-hover/media:scale-[1.015]"
-        />
-        <img
-          src={project.mobileImage}
-          alt={`${project.title} mobile dashboard displayed on an iPhone`}
-          loading="lazy"
-          className="absolute bottom-[4%] right-[3%] w-[21%] drop-shadow-2xl transition-transform duration-700 group-hover/media:-translate-y-1 group-hover/media:scale-[1.02]"
-        />
-      </motion.a>
-    );
-  }
-
   return (
     <motion.div
+      role="group"
+      aria-label={`${project.title} browser preview`}
       className="overflow-hidden rounded-xl border border-line bg-white shadow-2xl shadow-ink/10"
       initial={{ clipPath: 'inset(0 0 100% 0)' }}
       whileInView={{ clipPath: 'inset(0 0 0% 0)' }}

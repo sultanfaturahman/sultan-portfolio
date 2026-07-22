@@ -22,7 +22,7 @@ const categories: SkillCategory[] = [
     evidence: 'Applied in Teelite Club, SiNaik, and The Blue Economist.',
   },
   {
-    title: 'Backend & APIs',
+    title: 'Backend & API',
     skills: [
       'Node.js',
       'Express.js',

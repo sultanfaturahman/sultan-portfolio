@@ -8,6 +8,7 @@
   }
 
   html {
+    position: relative;
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
     -webkit-font-smoothing: antialiased;
@@ -72,6 +73,10 @@
     .section {
       content-visibility: auto;
       contain-intrinsic-size: auto 900px;
+    }
+
+    html.section-navigation-ready .section {
+      content-visibility: visible;
     }
   }
 

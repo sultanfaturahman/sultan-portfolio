@@ -3,16 +3,16 @@ import { motion } from 'framer-motion';
 import { Reveal, TextReveal } from './motion';
 
 const meta = [
-  { label: 'Education', value: 'B.Informatics, Universitas Sultan Ageng Tirtayasa' },
+  { label: 'Education', value: 'Bachelor of Informatics, Universitas Sultan Ageng Tirtayasa' },
   { label: 'Graduated', value: 'January 2026' },
   { label: 'GPA', value: '3.78 / 4.00' },
-  { label: 'Location', value: 'Jakarta, Indonesia' },
+  { label: 'Location', value: 'Indonesia' },
 ];
 
 const qualities = [
   ['Existing codebases', 'Maintaining and extending systems already used in production.'],
   ['Business workflows', 'Membership, payments, validation, inventory, and reporting.'],
-  ['End-to-end delivery', 'Frontend, backend services, databases, APIs, and deployment.'],
+  ['End-to-end delivery', 'Frontend, backend services, databases, API, and deployment.'],
   ['Clear handover', 'Setup, maintenance, troubleshooting, and operational documentation.'],
 ];
 
@@ -32,11 +32,15 @@ const About: React.FC = () => {
             </Reveal>
 
             <Reveal delay={0.05}>
-              <img
-                src="/images/profile/sultan-profile.png"
-                alt="Muhamad Sultan Faturahman"
-                className="w-full max-h-[30rem] object-contain object-top drop-shadow-sm"
-              />
+              <figure className="overflow-hidden rounded-xl border border-line bg-paper-dim p-3 shadow-2xl shadow-ink/10">
+                <div className="overflow-hidden rounded-lg bg-paper">
+                  <img
+                    src="/images/profile/sultan-profile.png"
+                    alt="Muhamad Sultan Faturahman"
+                    className="aspect-[3/4] w-full object-cover object-top transition-transform duration-700 hover:scale-[1.015]"
+                  />
+                </div>
+              </figure>
             </Reveal>
           </div>
 
@@ -53,9 +57,9 @@ const About: React.FC = () => {
                 e-commerce operations, and financial management for MSMEs.
               </p>
               <p>
-                I work across React and TypeScript interfaces, backend services, APIs,
+                I work across React and TypeScript interfaces, backend services, API,
                 SQL and NoSQL data, debugging, validation, deployment, and technical
-                documentation—with an emphasis on maintainable features that support
+                documentation with an emphasis on maintainable features that support
                 real operational needs.
               </p>
             </Reveal>

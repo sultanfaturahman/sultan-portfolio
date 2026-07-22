@@ -15,7 +15,7 @@ const Contact: React.FC = () => {
     e.preventDefault();
     // No backend wired yet — open the user's mail client as a graceful fallback.
     const subject = encodeURIComponent(`Portfolio enquiry from ${form.name || 'someone'}`);
-    const body = encodeURIComponent(`${form.message}\n\n— ${form.name} (${form.email})`);
+    const body = encodeURIComponent(`${form.message}\n\n${form.name} (${form.email})`);
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
     setSent(true);
     setForm({ name: '', email: '', message: '' });
@@ -77,7 +77,7 @@ const Contact: React.FC = () => {
               </div>
               <div className="flex justify-between gap-6 py-3">
                 <dt className="eyebrow pt-1">Location</dt>
-                <dd className="font-serif text-lg">Jakarta, Indonesia</dd>
+                <dd className="font-serif text-lg">Indonesia</dd>
               </div>
               <div className="flex justify-between gap-6 py-3">
                 <dt className="eyebrow pt-1">Status</dt>
@@ -140,7 +140,7 @@ const Contact: React.FC = () => {
                   <button type="submit" className="btn-ink">Send message</button>
                 </Magnetic>
                 <span aria-live="polite" className="text-sm text-accent">
-                  {sent ? 'Thanks — opening your mail client.' : ''}
+                  {sent ? 'Thanks opening your mail client.' : ''}
                 </span>
               </div>
             </form>
